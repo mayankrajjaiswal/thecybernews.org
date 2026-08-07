@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DnsLookup from '../../components/DnsLookup';
+---
+
+<Layout title="DNS & WHOIS Lookup" description="Query global Domain Name System records directly from your browser to investigate suspicious domains.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        DNS & Domain Lookup
+      </h1>
+      <p class="text-lg md:text-xl text-indigo-800 max-w-2xl mx-auto">
+        Query global DNS records (A, MX, TXT) to securely investigate suspicious domains and trace the true origin of phishing links.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <DnsLookup client:load />
+
+    <div class="mt-16 prose prose-slate max-w-none">
+      <h2>How OSINT Uses DNS</h2>
+      <p>
+        <strong>OSINT (Open Source Intelligence)</strong> involves collecting publicly available data to assist in cybersecurity investigations. One of the very first steps in investigating a suspicious email or a phishing link is analyzing the domain's DNS records.
+      </p>
+      
+      <h3>Key Records to Look For:</h3>
+      <ul>
+        <li><strong>A Records (IPv4):</strong> This tells you the physical IP address of the server hosting the website. You can cross-reference this IP to see if it is hosted in a country known for cybercrime, or if it sits behind a protective proxy like Cloudflare.</li>
+        <li><strong>MX Records (Mail Exchange):</strong> If you receive a scam email, looking up the MX record of the sender's domain will tell you which company is actually hosting their email (e.g., Google, Microsoft, or a sketchy offshore provider).</li>
+        <li><strong>TXT Records:</strong> These are text records often used to verify domain ownership. Cybersecurity analysts look at SPF, DKIM, and DMARC text records to determine if a domain is properly configured to prevent email spoofing. Scammer domains usually have missing or misconfigured TXT records.</li>
+      </ul>
+      <p class="text-sm text-slate-500 italic mt-8">Note: This tool uses Google's public DNS-over-HTTPS (DoH) API to securely fetch records without exposing your local network resolver.</p>
+    </div>
+  </div>
+</Layout>

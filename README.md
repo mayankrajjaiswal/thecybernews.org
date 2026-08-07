@@ -24,7 +24,11 @@ The platform is structured around six main interconnected pillars:
 * **Feature:** A fully responsive homepage featuring the **Persona Selector** (React Component) which links directly to dedicated **Audience Hubs** (e.g., `/audience/parent`).
 * **Purpose:** The Audience Hubs dynamically read the `audience` tag from your markdown files and automatically assemble a customized landing page showing all guides and scam alerts relevant to that specific lifestyle.
 
-### 2. Guided Learning Roadmaps (`/roadmaps`)
+### 2. The Cyber Academy Dashboard (`/academy`)
+* **Feature:** A purely client-side progress dashboard.
+* **Purpose:** Gamifies the educational roadmaps. It tracks the user's progress through the guides using `localStorage`, awarding visual badges (e.g., "Cyber Defender") and offering a downloadable certificate when they complete specific curriculums, all without requiring user accounts or backend databases.
+
+### 3. Zero to Hero & Guided Roadmaps (`/learn`, `/roadmaps`)
 * **Feature:** Curated learning paths based on specific profiles (e.g., "Small Business Security" or "Family Internet Safety").
 * **Purpose:** Instead of a generic "Zero to Hero" path, these roadmaps dynamically query the content database using the `audience` tag. This allows the system to automatically generate sequential curriculums tailored to specific user needs, expanding Feature 6 of the architectural plan.
 

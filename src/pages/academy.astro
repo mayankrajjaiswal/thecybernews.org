@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AcademyDashboard from '../components/AcademyDashboard';
+---
+
+<Layout title="Cyber Academy" description="Track your progress, earn badges, and download your cybersecurity certificate.">
+  <div class="bg-indigo-900 py-16 border-b border-indigo-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-indigo-300 font-bold uppercase tracking-wider text-sm mb-4 block">Student Dashboard</span>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+        Cyber Academy
+      </h1>
+      <p class="text-xl text-indigo-100 max-w-2xl mx-auto">
+        Track your learning progress, earn digital badges, and unlock your official certificate.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <AcademyDashboard client:only="react" />
+  </div>
+</Layout>

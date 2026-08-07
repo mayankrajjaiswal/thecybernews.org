@@ -1,75 +1,142 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PersonaSelector from '../components/PersonaSelector';
+import { getCollection } from 'astro:content';
+
+// Fetch the 3 most recent or high severity scams for the homepage "Threat Radar"
+const allScams = await getCollection('scams');
+const activeThreats = allScams.slice(0, 3);
 ---
 
 <Layout title="Home" description="The world's most practical cybersecurity knowledge platform.">
-  <div class="bg-blue-900 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-      <div class="max-w-3xl">
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
-          Stay Safe in the Digital World
-        </h1>
-        <p class="text-lg sm:text-xl text-blue-100 mb-10 leading-relaxed">
-          Everything you need to know about Cybersecurity. Written for everyone. Not just IT professionals.
-        </p>
-        <div class="flex flex-wrap gap-4">
-          <a href="/learn" class="bg-white text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
-            Start Learning
-          </a>
-          <a href="/scams" class="bg-blue-800 border border-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-            View Latest Scams
-          </a>
-        </div>
+  
+  {/* HERO SECTION - Modern Dark Cyber Aesthetic */}
+  <div class="relative bg-slate-950 overflow-hidden border-b border-slate-800">
+    {/* Ambient Glowing Background Orbs */}
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[400px] bg-blue-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[500px] h-[300px] bg-emerald-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+    
+    {/* Subtle CSS Grid Pattern */}
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32 lg:pt-32 lg:pb-40 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700 text-slate-300 text-sm font-medium mb-8 backdrop-blur-sm">
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        Empowering Everyday Internet Users
+      </div>
+      
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-8">
+        Master Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-emerald-400">Digital Security</span>
+      </h1>
+      
+      <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+        We don't do technical jargon. We provide the practical guides, scam alerts, and tools you need to protect your family and business online.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/learn" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]">
+          Start Learning Now
+        </a>
+        <a href="/scams" class="bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all">
+          View Active Threats
+        </a>
       </div>
     </div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 -mt-12 relative z-10">
+  {/* PERSONA SELECTOR - Pulled up to overlap the hero slightly */}
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 -mt-16 mb-20">
     <PersonaSelector client:load />
   </div>
 
-  <div class="bg-white py-20 border-t border-slate-200">
+  {/* DYNAMIC THREAT RADAR */}
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mb-12">
+    <div class="flex items-center justify-between mb-8 border-b border-slate-200 pb-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-slate-900 flex items-center gap-3">
+        <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+        </svg>
+        Live Threat Radar
+      </h2>
+      <a href="/scams" class="hidden sm:block text-blue-600 font-semibold hover:text-blue-800">View all scams &rarr;</a>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {activeThreats.map(scam => (
+        <a href={`/scams/${scam.id}`} class="bg-white border-l-4 border-l-red-500 border-y border-r border-slate-200 rounded-r-xl p-6 shadow-sm hover:shadow-md transition-shadow group">
+          <div class="flex justify-between items-start mb-2">
+            <span class="text-xs font-bold text-slate-500 uppercase">{scam.data.category}</span>
+            <span class="text-xs font-bold text-red-700 bg-red-100 px-2 py-0.5 rounded">Active</span>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{scam.data.title}</h3>
+          <p class="text-sm text-slate-600 line-clamp-2">{scam.data.description}</p>
+        </a>
+      ))}
+    </div>
+    <a href="/scams" class="block sm:hidden text-blue-600 font-semibold text-center mt-6">View all scams &rarr;</a>
+  </div>
+
+  {/* THE KNOWLEDGE ECOSYSTEM (4 Pillars) */}
+  <div class="bg-slate-50 py-24 border-t border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900">Explore Our Pillars</h2>
-        <p class="mt-4 text-slate-600 max-w-2xl mx-auto">We break down complex cybersecurity topics into bite-sized, actionable guides.</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">The Knowledge Ecosystem</h2>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto">Everything you need to secure your digital life, organized into four practical pillars.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-md transition-shadow">
-          <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Pillar 1 */}
+        <a href="/learn" class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:border-blue-400 hover:shadow-lg transition-all group hover:-translate-y-1">
+          <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-slate-900">Zero to Hero</h3>
-          <p class="text-slate-600 mb-4">A structured path from absolute beginner to cybersecurity confident.</p>
-          <a href="/learn" class="text-blue-600 font-semibold hover:text-blue-700">Explore Path &rarr;</a>
-        </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Cyber Academy</h3>
+          <p class="text-slate-600 text-sm mb-4">Structured "Zero to Hero" roadmaps to take you from beginner to expert.</p>
+          <span class="text-blue-600 font-semibold text-sm">Start Learning &rarr;</span>
+        </a>
 
-        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-md transition-shadow">
-          <div class="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+        {/* Pillar 2 */}
+        <a href="/dictionary" class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:border-emerald-400 hover:shadow-lg transition-all group hover:-translate-y-1">
+          <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-slate-900">Scam Alerts</h3>
-          <p class="text-slate-600 mb-4">Tactical teardowns of active fraud schemes and how to avoid them.</p>
-          <a href="/scams" class="text-blue-600 font-semibold hover:text-blue-700">View Scams &rarr;</a>
-        </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Jargon Dictionary</h3>
+          <p class="text-slate-600 text-sm mb-4">Complex technical terms translated into everyday analogies and plain English.</p>
+          <span class="text-emerald-600 font-semibold text-sm">Search Terms &rarr;</span>
+        </a>
 
-        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-md transition-shadow">
-          <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+        {/* Pillar 3 */}
+        <a href="/news" class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:border-purple-400 hover:shadow-lg transition-all group hover:-translate-y-1">
+          <div class="w-14 h-14 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-3 text-slate-900">Cyber Dictionary</h3>
-          <p class="text-slate-600 mb-4">Complex technical jargon translated into simple, everyday English.</p>
-          <a href="/dictionary" class="text-blue-600 font-semibold hover:text-blue-700">Search Terms &rarr;</a>
-        </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">News Explained</h3>
+          <p class="text-slate-600 text-sm mb-4">The latest data breaches and hacks decoded so you know exactly what to do.</p>
+          <span class="text-purple-600 font-semibold text-sm">Read the News &rarr;</span>
+        </a>
+
+        {/* Pillar 4 */}
+        <a href="/tools" class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-lg transition-all group hover:-translate-y-1">
+          <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Security Toolbox</h3>
+          <p class="text-slate-600 text-sm mb-4">Free, secure client-side tools like Password Generators and Breach Checkers.</p>
+          <span class="text-indigo-600 font-semibold text-sm">Use the Tools &rarr;</span>
+        </a>
       </div>
     </div>
   </div>
+
 </Layout>
