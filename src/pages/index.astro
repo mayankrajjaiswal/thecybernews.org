@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PersonaSelector from '../components/PersonaSelector';
+---
+
+<Layout title="Home" description="The world's most practical cybersecurity knowledge platform.">
+  <div class="bg-blue-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
+          Stay Safe in the Digital World
+        </h1>
+        <p class="text-lg sm:text-xl text-blue-100 mb-10 leading-relaxed">
+          Everything you need to know about Cybersecurity. Written for everyone. Not just IT professionals.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/learn" class="bg-white text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+            Start Learning
+          </a>
+          <a href="/scams" class="bg-blue-800 border border-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            View Latest Scams
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 -mt-12 relative z-10">
+    <PersonaSelector client:load />
+  </div>
+
+  <div class="bg-white py-20 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-slate-900">Explore Our Pillars</h2>
+        <p class="mt-4 text-slate-600 max-w-2xl mx-auto">We break down complex cybersecurity topics into bite-sized, actionable guides.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-slate-900">Zero to Hero</h3>
+          <p class="text-slate-600 mb-4">A structured path from absolute beginner to cybersecurity confident.</p>
+          <a href="/learn" class="text-blue-600 font-semibold hover:text-blue-700">Explore Path &rarr;</a>
+        </div>
+
+        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-slate-900">Scam Alerts</h3>
+          <p class="text-slate-600 mb-4">Tactical teardowns of active fraud schemes and how to avoid them.</p>
+          <a href="/scams" class="text-blue-600 font-semibold hover:text-blue-700">View Scams &rarr;</a>
+        </div>
+
+        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-md transition-shadow">
+          <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-slate-900">Cyber Dictionary</h3>
+          <p class="text-slate-600 mb-4">Complex technical jargon translated into simple, everyday English.</p>
+          <a href="/dictionary" class="text-blue-600 font-semibold hover:text-blue-700">Search Terms &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
