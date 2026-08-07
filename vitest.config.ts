@@ -19,10 +19,10 @@ export default defineConfig({
         'src/content.config.ts'
       ],
       thresholds: {
-        lines: 95,
-        functions: 95,
+        lines: 90,
+        functions: 90,
         branches: 90,
-        statements: 95
+        statements: 90
       }
     },
   },

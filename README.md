@@ -53,7 +53,11 @@ The platform is structured around six main interconnected pillars:
 * **Feature:** A directory of trusted external organizations, government agencies, and community databases.
 * **Purpose:** Provides a safe, vetted list of external links (like CISA or HaveIBeenPwned) so users don't have to rely on Google search results where scammers buy fake ads.
 
-### 8. Internal Linking & SEO Engine
+### 8. Global Search Engine (Pagefind)
+* **Feature:** A highly optimized, strictly client-side search engine integrated into the main navigation header.
+* **Purpose:** Allows users to perform instant, fuzzy searches across the entire dictionary, scam database, and educational hubs without relying on a slow backend server.
+
+### 9. Internal Linking & SEO Engine
 * **Internal Linking:** Every article automatically generates a "Continue Learning" or "Related Links" section at the bottom, ensuring users never hit a dead end.
 * **Breadcrumb Navigation:** Every single article and guide automatically generates SEO-friendly breadcrumb navigation at the top of the page.
 * **Automated SEO Schemas:** The site automatically generates Canonical URLs, OpenGraph (Facebook) tags, Twitter Cards, and `robots.txt`. Most importantly, it injects structured JSON-LD (`Article` and `BreadcrumbList`) into every Markdown page, ensuring Google indexes the content perfectly for rich search results. An automated XML Sitemap is generated at `sitemap-index.xml`.
