@@ -1,5 +1,6 @@
 ---
 import Layout from './Layout.astro';
+import { getCollection } from 'astro:content';
 
 const { frontmatter, url } = Astro.props;
 
@@ -57,6 +58,13 @@ const breadcrumbSchema = hasBreadcrumb ? {
     }
   ]
 } : null;
+
+// Feature 13: Internal Linking Engine (Fetch related dictionary terms)
+let relatedTerms: any[] = [];
+if (frontmatter.relatedTopics && frontmatter.relatedTopics.length > 0) {
+  const allDictionary = await getCollection('dictionary');
+  relatedTerms = allDictionary.filter(term => frontmatter.relatedTopics.includes(term.id));
+}
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description || "Cybersecurity guide by TheCyberNews"}>
@@ -64,7 +72,7 @@ const breadcrumbSchema = hasBreadcrumb ? {
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   {hasBreadcrumb && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
 
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
     
     {/* Feature 14: Breadcrumb Navigation */}
     {hasBreadcrumb && (
@@ -98,27 +106,57 @@ const breadcrumbSchema = hasBreadcrumb ? {
       </nav>
     )}
 
-    <div class="mb-8">
-      {frontmatter.category && (
-        <span class="text-blue-600 font-semibold tracking-wider uppercase text-sm mb-2 block">
-          {frontmatter.category}
-        </span>
+    <div class="flex flex-col lg:flex-row gap-12">
+      
+      {/* Main Article Content */}
+      <div class="flex-grow max-w-4xl">
+        <div class="mb-8">
+          {frontmatter.category && (
+            <span class="text-blue-600 font-semibold tracking-wider uppercase text-sm mb-2 block">
+              {frontmatter.category}
+            </span>
+          )}
+          <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4 leading-tight">
+            {frontmatter.title}
+          </h1>
+          {frontmatter.date && (
+            <p class="text-slate-500 text-sm flex items-center">
+              <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+              Last updated: {new Date(frontmatter.date).toLocaleDateString()}
+            </p>
+          )}
+        </div>
+        
+        <article class="prose prose-slate prose-lg max-w-none prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-img:rounded-xl prose-img:shadow-md">
+          <slot />
+        </article>
+      </div>
+
+      {/* Feature 13/18: Dynamic Sidebar for Related Terms */}
+      {relatedTerms.length > 0 && (
+        <aside class="w-full lg:w-80 flex-shrink-0">
+          <div class="sticky top-8 bg-slate-50 border border-slate-200 rounded-2xl p-6">
+            <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center">
+              <svg class="w-5 h-5 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+              Key Terms to Know
+            </h3>
+            <div class="space-y-4">
+              {relatedTerms.map((term: any) => (
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+                  <h4 class="font-bold text-slate-900 mb-1 text-sm">{term.data.title}</h4>
+                  <p class="text-slate-600 text-xs mb-3 line-clamp-3">{term.data.description}</p>
+                  <a href={`/dictionary/${term.id}`} class="text-emerald-600 font-semibold text-xs hover:text-emerald-700">Read Definition &rarr;</a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </aside>
       )}
-      <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4 leading-tight">
-        {frontmatter.title}
-      </h1>
-      {frontmatter.date && (
-        <p class="text-slate-500 text-sm flex items-center">
-          <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-          </svg>
-          Last updated: {new Date(frontmatter.date).toLocaleDateString()}
-        </p>
-      )}
+
     </div>
-    
-    <article class="prose prose-slate prose-lg max-w-none prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-img:rounded-xl prose-img:shadow-md">
-      <slot />
-    </article>
   </div>
 </Layout>

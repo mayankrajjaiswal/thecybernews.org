@@ -6,6 +6,7 @@ difficulty: Beginner
 readingTime: 5 min read
 audience: ['senior', 'parent', 'student', 'employee', 'business', 'it']
 description: Why humans are terrible at making passwords, and how a Password Manager solves the problem effortlessly.
+relatedTopics: ['password-manager', 'mfa', 'passkey']
 ---
 
 ## The Core Problem: Human Memory
