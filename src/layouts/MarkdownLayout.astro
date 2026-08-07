@@ -1,6 +1,7 @@
 ---
 import Layout from './Layout.astro';
 import { getCollection } from 'astro:content';
+import ProgressTracker from '../components/ProgressTracker';
 
 const { frontmatter, url } = Astro.props;
 
@@ -156,6 +157,11 @@ if (frontmatter.relatedTopics && frontmatter.relatedTopics.length > 0) {
         <article class="prose prose-slate prose-lg max-w-none prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-img:rounded-xl prose-img:shadow-md">
           <slot />
         </article>
+
+        {/* Phase 3: Learning Progress Tracker */}
+        {pathSegments[0] === 'learn' && (
+          <ProgressTracker client:load articleId={frontmatter.slug || pathSegments[pathSegments.length - 1]} />
+        )}
       </div>
 
       {/* Feature 13/18: Dynamic Sidebar for Related Terms */}

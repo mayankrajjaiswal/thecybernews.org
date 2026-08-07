@@ -46,3 +46,20 @@ You do not need MFA turned on for a random cooking blog. You **do** need it turn
 1. Log into your primary Email account (Gmail, Yahoo, Outlook) right now. Go to the security settings and turn on Two-Factor Authentication. 
 2. Do the exact same thing for your Bank Account.
 3. If you use a Password Manager, turn MFA on for that immediately.
+
+import KnowledgeCheck from '../../components/KnowledgeCheck.tsx';
+
+<KnowledgeCheck client:load questions={[
+  {
+    question: "Why is SMS (Text Message) MFA considered the weakest form of Multi-Factor Authentication?",
+    options: ["It costs money to receive texts", "Hackers can execute a 'SIM Swap' attack to steal your text messages", "Text messages expire too quickly"],
+    correctAnswerIndex: 1,
+    explanation: "A SIM Swap attack involves a hacker tricking your cellular provider into porting your phone number to their device, allowing them to intercept your MFA codes."
+  },
+  {
+    question: "What is the primary advantage of using a Security Key (like a YubiKey) over an Authenticator App?",
+    options: ["It is completely immune to Phishing", "It doesn't require a password", "It is cheaper"],
+    correctAnswerIndex: 0,
+    explanation: "Because physical security keys interact directly with the website's cryptographic signature, they cannot be tricked by fake, lookalike phishing websites."
+  }
+]} />

@@ -61,6 +61,10 @@ The platform is structured around six main interconnected pillars:
 * **Feature:** The content engine has been upgraded to support `.mdx` files. This allows you to write standard Markdown while safely embedding interactive React components directly into the text.
 * **Purpose:** Gamifies the learning experience. Editors can drop the `<KnowledgeCheck />` component at the bottom of any `.mdx` file to test users on the material they just read.
 
+### 10. Learning Progress Tracking (Phase 3)
+* **Feature:** A purely client-side progress tracking engine utilizing `localStorage`. 
+* **Purpose:** Gamifies the educational roadmaps. Users can click a "Mark Complete" button at the bottom of any guide. Their progress is then visually tracked via an animated progress bar on the Guided Roadmap landing pages, encouraging them to finish the curriculum without requiring them to create a user account.
+
 ---
 
 ## 🛠️ Tech Stack

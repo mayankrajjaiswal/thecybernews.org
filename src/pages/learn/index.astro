@@ -1,5 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import GlobalProgress from '../../components/GlobalProgress';
+
+const allGuides = await getCollection('learn');
 ---
 
 <Layout title="Zero to Hero Learning Path" description="A structured path from absolute beginner to cybersecurity confident.">
@@ -15,6 +19,9 @@ import Layout from '../../layouts/Layout.astro';
   </div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    {/* Prominent Global Progress Tracker */}
+    <GlobalProgress client:load totalArticles={allGuides.length} />
+
     <div class="mb-16">
       <h2 class="text-3xl font-bold text-slate-900 mb-8 text-center">Explore by Topic Hub</h2>
       <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
