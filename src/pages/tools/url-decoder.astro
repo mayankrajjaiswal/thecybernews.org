@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import UrlDecoder from '../../components/UrlDecoder';
+---
+
+<Layout title="URL Decoder & Link Analyzer" description="Unscramble suspicious, jumbled website links to see exactly where they actually lead.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        URL Decoder & Link Analyzer
+      </h1>
+      <p class="text-lg md:text-xl text-indigo-800 max-w-2xl mx-auto">
+        Received a suspicious, jumbled link in a text message or email? Paste it below to safely decode and analyze exactly where it leads before you click.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <UrlDecoder client:load />
+
+    <div class="mt-16 prose prose-slate max-w-none">
+      <h2>Why use a URL Decoder?</h2>
+      <p>
+        Scammers often use "URL Encoding" to hide the true destination of a link. URL Encoding replaces unsafe ASCII characters with a "%" followed by two hexadecimal digits. For example, a space becomes <code>%20</code>, and a forward slash becomes <code>%2F</code>.
+      </p>
+      <p>
+        A malicious link might look like this: <br/>
+        <code class="break-all text-red-600 bg-red-50 px-2 py-1 rounded">https%3A%2F%2Famazon-support.com%2Flogin%3Fuser%3Djohndoe</code>
+      </p>
+      <p>
+        To the untrained eye, it looks like technical gibberish. But when decoded, it reveals its true structure, making it much easier to spot a phishing attempt (like noticing the domain is <code>amazon-support.com</code> instead of the legitimate <code>amazon.com</code>).
+      </p>
+      
+      <h3>How to analyze a link:</h3>
+      <ul>
+        <li><strong>Check the Domain:</strong> The "True Destination" is the most important part. Always verify that the domain perfectly matches the official company website.</li>
+        <li><strong>Look at the Protocol:</strong> Is it HTTPS or HTTP? HTTPS means the connection between you and the website is encrypted. Almost all legitimate companies use HTTPS today.</li>
+        <li><strong>Review Hidden Parameters:</strong> Sometimes links pass hidden data to the server (like your email address or a tracking ID). This tool breaks those out so you can see exactly what data the link is trying to send.</li>
+      </ul>
+      
+      <p class="text-sm text-slate-500 mt-8 italic">Note: This tool analyzes the structure of the link. It does not scan the destination website for malware.</p>
+    </div>
+  </div>
+</Layout>
