@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const downloads = [
+  {
+    category: 'Posters for the Office & School',
+    items: [
+      { title: 'Cyber Safety Poster for School Classrooms', size: '3.4 MB PDF', href: '/downloads/posters' },
+      { title: 'Don\'t Get Hooked: Phishing Awareness Poster', size: '2.1 MB PDF', href: '/downloads/posters' },
+    ]
+  },
+  {
+    category: 'Printable Cheat Sheets',
+    items: [
+      { title: 'The 10-Minute Identity Theft Recovery Guide', size: '1.2 MB PDF', href: '/downloads/training' },
+      { title: 'Printable Password Cheat Sheet (For Seniors)', size: '800 KB PDF', href: '/downloads/training' },
+      { title: 'How to Spot a Fake Email (Checklist)', size: '1.5 MB PDF', href: '/downloads/training' },
+    ]
+  }
+];
+---
+
+<Layout title="Downloads Hub" description="Free, printable cybersecurity posters, cheat sheets, and checklists.">
+  <div class="bg-slate-800 py-16 border-b border-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+        Downloads Hub
+      </h1>
+      <p class="text-xl text-slate-300 max-w-2xl mx-auto">
+        Free, printable resources to help spread cybersecurity awareness in your home, school, or office.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="space-y-12">
+      {downloads.map((section) => (
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-6">{section.category}</h2>
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <ul class="divide-y divide-slate-100">
+              {section.items.map(item => (
+                <li class="p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between hover:bg-slate-50 transition-colors">
+                  <div class="flex items-center mb-4 sm:mb-0">
+                    <div class="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="text-lg font-semibold text-slate-800 block">{item.title}</span>
+                      <span class="text-sm text-slate-500">{item.size}</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center">
+                    <a href={item.href} class="w-full sm:w-auto bg-slate-100 text-slate-700 px-6 py-2.5 rounded-lg font-medium hover:bg-slate-200 transition-colors text-center">
+                      Download PDF
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>

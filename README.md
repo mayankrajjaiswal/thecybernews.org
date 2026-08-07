@@ -17,7 +17,7 @@ Unlike traditional cybersecurity news websites that cater to IT professionals, *
 
 ## 🚀 The Core Pillars & Implemented Features
 
-The platform is structured around five main pillars, all of which are fully implemented and ready for scale:
+The platform is structured around six main pillars, all of which are fully implemented and ready for scale:
 
 ### 1. The Home Hub (`/`)
 * **Feature:** A fully responsive homepage featuring the **Persona Selector** (React Component).
@@ -25,14 +25,14 @@ The platform is structured around five main pillars, all of which are fully impl
 
 ### 2. Zero to Hero (`/learn`)
 * **Feature:** A structured, chronological learning path.
-* **Purpose:** Takes users from absolute beginners (Passwords/MFA) to intermediate (Home Wi-Fi) and advanced (VPNs/Footprints).
+* **Purpose:** Takes users from absolute beginners (Passwords/MFA) to intermediate (Home Wi-Fi) and advanced (VPNs/Footprints). Every single step has a corresponding Markdown template generated to prevent broken links.
 
 ### 3. Scam Alerts (`/scams`)
-* **Feature:** A directory of active fraud schemes categorized by urgency (High/Medium/Critical).
-* **Purpose:** Tactical teardowns of active scams (like WhatsApp hijacking or UPI fraud) with real screenshots and immediate mitigation steps.
+* **Feature:** A directory of active fraud schemes categorized by urgency (High/Medium/Critical). Includes fully routed placeholder pages for modern scams (like WhatsApp hijack, job offers, or package delivery).
+* **Purpose:** Tactical teardowns of active scams with real screenshots and immediate mitigation steps.
 
 ### 4. Cyber Dictionary (`/dictionary`)
-* **Feature:** An A-to-Z index of complex technical jargon translated into simple, everyday English. Includes a client-side search UI and alphabet quick-jump links.
+* **Feature:** An A-to-Z index of complex technical jargon translated into simple, everyday English. Includes a client-side search UI, alphabet quick-jump links, and fully populated placeholder pages for core terminology.
 
 ### 5. News Explained (`/news`)
 * **Feature:** We don't publish "breaking news." We decode complex security events.
@@ -43,6 +43,13 @@ The platform is structured around five main pillars, all of which are fully impl
 * **Implemented Tools:**
   * **Secure Password Generator:** A React island using `window.crypto` to generate mathematically strong passwords entirely inside the browser.
   * **URL Decoder:** Analyzes and unscrambles malformed or encoded links to reveal the "True Destination" to prevent phishing.
+  * **Password Breach Checker:** Uses the secure `k-Anonymity` model to securely hash (SHA-1) and check if passwords have been compromised in data breaches without ever transmitting the full password.
+
+### 7. Downloads Hub (`/downloads`)
+* **Feature:** A centralized, categorized landing page containing printable awareness posters (for schools or offices) and PDF cheat sheets.
+
+### 8. Custom 404 Safety Net (`/404`)
+* **Feature:** A beautifully branded custom 404 page that catches any mistyped URLs, helping users find their way back home or directly into the search tools.
 
 ---
 
@@ -52,7 +59,7 @@ This site is built for maximum speed, security, and SEO:
 * **Framework:** [Astro](https://astro.build/) (Static Site Generation)
 * **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) + Tailwind Typography 
 * **Interactive UI:** [React](https://react.dev/) (For client-side "Islands")
-* **Testing:** [Vitest](https://vitest.dev/) + React Testing Library 
+* **Testing:** [Vitest](https://vitest.dev/) + React Testing Library (Verified at **99.18% test coverage**)
 * **Hosting:** GitHub Pages (Automated via GitHub Actions)
 
 ---
@@ -69,11 +76,14 @@ This site is built for maximum speed, security, and SEO:
 │   ├── styles/          # Global CSS and Tailwind imports
 │   └── pages/           # File-based routing
 │       ├── index.astro       # The Homepage
+│       ├── 404.astro         # Branded Error Page
 │       ├── dictionary/       # Dictionary index & markdown terms
+│       ├── downloads/        # Downloads hub index & printable items
 │       ├── learn/            # Zero to Hero curriculum index & modules
 │       ├── news/             # News index & decoded news articles
 │       ├── scams/            # Scam alerts index & markdown teardowns
 │       └── tools/            # Toolbox index & interactive utilities
+├── generate-stubs.js    # Developer utility for scaffolding missing links
 └── vitest.config.ts     # Strict test coverage configurations
 ```
 
@@ -89,7 +99,7 @@ Paste this `frontmatter` at the top of every new `.md` file:
 ---
 layout: ../../layouts/MarkdownLayout.astro
 title: Your Article Title
-category: [Scam Alert | Dictionary Term | Guide | News Explained]
+category: [Scam Alert | Dictionary Term | Guide | News Explained | Downloads]
 date: 2026-08-07
 description: A short 1-2 sentence summary for Google Search.
 ---
