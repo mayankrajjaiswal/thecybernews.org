@@ -1,6 +1,7 @@
 ---
 title: Corporate Phishing Emails
 category: Scam Alert
+audience: ['business', 'employee', 'it', 'senior']
 date: 2026-08-07
 description: This is a placeholder article for Corporate Phishing Emails.
 ---

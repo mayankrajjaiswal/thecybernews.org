@@ -15,7 +15,8 @@ export default defineConfig({
       exclude: [
         '**/*.test.{ts,tsx}',
         '**/*.d.ts',
-        'vitest.setup.ts'
+        'vitest.setup.ts',
+        'src/content.config.ts'
       ],
       thresholds: {
         lines: 95,

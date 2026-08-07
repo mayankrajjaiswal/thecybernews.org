@@ -20,12 +20,13 @@ Unlike traditional cybersecurity news websites that cater to IT professionals, *
 
 The platform is structured around six main interconnected pillars:
 
-### 1. The Home Hub (`/`)
-* **Feature:** A fully responsive homepage featuring the **Persona Selector** (React Component).
-* **Purpose:** Allows users to identify themselves (e.g., Parent, Senior) and instantly displays curated content links relevant to their specific lifestyle.
+### 1. The Home Hub & Audience Navigation (`/audience`)
+* **Feature:** A fully responsive homepage featuring the **Persona Selector** (React Component) which links directly to dedicated **Audience Hubs** (e.g., `/audience/parent`).
+* **Purpose:** The Audience Hubs dynamically read the `audience` tag from your markdown files and automatically assemble a customized landing page showing all guides and scam alerts relevant to that specific lifestyle.
 
-### 2. Zero to Hero (`/learn`)
-* **Feature:** A structured, chronological learning path.
+### 2. Guided Learning Roadmaps (`/roadmaps`)
+* **Feature:** Curated learning paths based on specific profiles (e.g., "Small Business Security" or "Family Internet Safety").
+* **Purpose:** Instead of a generic "Zero to Hero" path, these roadmaps dynamically query the content database using the `audience` tag. This allows the system to automatically generate sequential curriculums tailored to specific user needs, expanding Feature 6 of the architectural plan.
 
 ### 3. Scam Alerts (`/scams`)
 * **Feature:** A directory of active fraud schemes.
@@ -44,6 +45,9 @@ The platform is structured around six main interconnected pillars:
 
 ### 7. Internal Linking Engine
 * **Feature:** Because content is stored in Astro Content Collections, every article automatically generates a "Continue Learning" or "Related Links" section at the bottom, ensuring users never hit a dead end.
+
+### 8. Breadcrumb Navigation
+* **Feature:** Every single article and guide automatically generates SEO-friendly breadcrumb navigation at the top of the page (e.g., `Home > Scam Alerts > WhatsApp Hijacking`), ensuring users never get lost.
 
 ---
 
@@ -92,6 +96,7 @@ Because we use strict Content Collections, your markdown file MUST start with th
 title: Your Article Title
 category: [Scam Alert | Dictionary Term | Guide | News Explained]
 description: A short 1-2 sentence summary for Google Search and index cards.
+audience: ['parent', 'student', 'business', 'employee', 'senior', 'it'] # Add any relevant personas here
 ---
 ```
 *(Note: Some collections require extra fields. E.g., `src/content/scams/` requires a `severity: [Low | Medium | High | Critical]` field. Check `src/content.config.ts` for exact schemas).*

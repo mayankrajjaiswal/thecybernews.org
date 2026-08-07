@@ -1,41 +1,20 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
-const scams = [
-  {
-    title: 'The "Package Delivery" Text Scam',
-    type: 'Smishing (SMS Phishing)',
-    description: 'A text message claiming a package couldn\'t be delivered due to an unpaid fee or wrong address.',
-    href: '/scams/package-delivery',
-    urgency: 'High',
-  },
-  {
-    title: 'WhatsApp Account Hijacking',
-    type: 'Social Engineering',
-    description: 'A friend messages you asking for a 6-digit code they accidentally sent to your phone.',
-    href: '/scams/whatsapp-hijack',
-    urgency: 'Critical',
-  },
-  {
-    title: 'Tech Support Pop-up Scam',
-    type: 'Browser Hijacking',
-    description: 'A loud, full-screen warning on your computer claiming it is infected with a virus and to call a number immediately.',
-    href: '/scams/tech-support',
-    urgency: 'Medium',
-  },
-  {
-    title: 'UPI & Payment App Fraud',
-    type: 'Payment Fraud',
-    description: 'Scammers requesting you to enter your PIN to *receive* a payment on apps like Google Pay or Venmo.',
-    href: '/scams/upi-fraud',
-    urgency: 'High',
-  }
-];
+const allScams = await getCollection('scams');
 
-const urgencyColors = {
+// Sort by date (if available) or by severity logic
+const scams = allScams.sort((a, b) => {
+  // Simple fallback sort by title if no date exists
+  return a.data.title.localeCompare(b.data.title);
+});
+
+const urgencyColors: Record<string, string> = {
   Critical: 'bg-red-100 text-red-800 border-red-200',
   High: 'bg-orange-100 text-orange-800 border-orange-200',
   Medium: 'bg-yellow-100 text-yellow-800 border-yellow-200',
+  Low: 'bg-emerald-100 text-emerald-800 border-emerald-200',
 };
 ---
 
@@ -54,18 +33,18 @@ const urgencyColors = {
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {scams.map((scam) => (
-        <a href={scam.href} class="block bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
+        <a href={`/scams/${scam.id}`} class="block bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
           <div class="flex justify-between items-start mb-4">
-            <span class="text-sm font-semibold text-slate-500 uppercase tracking-wider">{scam.type}</span>
-            <span class={`text-xs px-2.5 py-1 rounded-full font-bold border ${urgencyColors[scam.urgency]}`}>
-              {scam.urgency} Alert
+            <span class="text-sm font-semibold text-slate-500 uppercase tracking-wider">{scam.data.category}</span>
+            <span class={`text-xs px-2.5 py-1 rounded-full font-bold border ${urgencyColors[scam.data.severity || 'Medium']}`}>
+              {scam.data.severity || 'Medium'} Alert
             </span>
           </div>
           <h2 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
-            {scam.title}
+            {scam.data.title}
           </h2>
-          <p class="text-slate-600 leading-relaxed mb-4">
-            {scam.description}
+          <p class="text-slate-600 leading-relaxed mb-4 line-clamp-3">
+            {scam.data.description}
           </p>
           <div class="flex items-center text-blue-600 font-semibold text-sm">
             Read Teardown &rarr;

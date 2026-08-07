@@ -7,12 +7,10 @@ describe('PersonaSelector Component', () => {
   it('renders correctly with default parent persona', () => {
     render(<PersonaSelector />);
     
-    // Check if title is present
     expect(screen.getByText('Select your profile to get started:')).toBeInTheDocument();
-    
-    // Default is parent
-    expect(screen.getByText('Guides for Parents')).toBeInTheDocument();
-    expect(screen.getByText('Setting up parental controls')).toBeInTheDocument();
+    expect(screen.getByText('Resources for Parents')).toBeInTheDocument();
+    expect(screen.getByText(/Keep kids safe in online games/)).toBeInTheDocument();
+    expect(screen.getByText('View All Parent Guides →')).toBeInTheDocument();
   });
 
   it('changes content when a different persona is clicked', () => {
@@ -21,12 +19,9 @@ describe('PersonaSelector Component', () => {
     const seniorButton = screen.getByTestId('btn-senior');
     fireEvent.click(seniorButton);
     
-    // Content should now reflect Senior Citizen
-    expect(screen.getByText('Guides for Senior Citizens')).toBeInTheDocument();
-    expect(screen.getByText('Safe online banking practices')).toBeInTheDocument();
-    
-    // Parent content should no longer be visible
-    expect(screen.queryByText('Guides for Parents')).not.toBeInTheDocument();
+    expect(screen.getByText('Resources for Senior Citizens')).toBeInTheDocument();
+    expect(screen.getByText(/Spot tech support phone scams/)).toBeInTheDocument();
+    expect(screen.queryByText('Resources for Parents')).not.toBeInTheDocument();
   });
 
   it('renders all persona buttons', () => {

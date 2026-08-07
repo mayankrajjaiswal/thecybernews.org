@@ -19,7 +19,7 @@ const allDocs = await getCollection('learn');
 const relatedGuides = allDocs.filter(doc => doc.id !== entry.id).slice(0, 3);
 ---
 
-<MarkdownLayout frontmatter={entry.data}>
+<MarkdownLayout frontmatter={entry.data} url={Astro.url}>
   {/* The Content component automatically renders the markdown body here */}
   <Content />
 

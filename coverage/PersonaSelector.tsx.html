@@ -147,52 +147,11 @@
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a>
-<a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a>
-<a name='L89'></a><a href='#L89'>89</a>
-<a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a>
-<a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a>
-<a name='L96'></a><a href='#L96'>96</a>
-<a name='L97'></a><a href='#L97'>97</a>
-<a name='L98'></a><a href='#L98'>98</a>
-<a name='L99'></a><a href='#L99'>99</a>
-<a name='L100'></a><a href='#L100'>100</a>
-<a name='L101'></a><a href='#L101'>101</a>
-<a name='L102'></a><a href='#L102'>102</a>
-<a name='L103'></a><a href='#L103'>103</a>
-<a name='L104'></a><a href='#L104'>104</a>
-<a name='L105'></a><a href='#L105'>105</a>
-<a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -263,15 +222,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -281,54 +235,36 @@
 &nbsp;
 type Persona = 'student' | 'parent' | 'employee' | 'business' | 'senior' | 'it';
 &nbsp;
-const contentMap: Record&lt;Persona, { title: string; links: { label: string; href: string }[] }&gt; = {
+const contentMap: Record&lt;Persona, { title: string; desc: string; href: string }&gt; = {
   student: {
-    title: 'Guides for Students',
-    links: [
-      { label: 'Protecting your social media privacy', href: '/learn/social-media' },
-      { label: 'How to spot fake job offers', href: '/scams/job-scams' },
-      { label: 'Securing your devices on campus Wi-Fi', href: '/learn/public-wifi' },
-    ],
+    title: 'Resources for Students',
+    desc: 'Protect your social media, secure your devices on campus Wi-Fi, and spot fake job offers.',
+    href: '/audience/student',
   },
   parent: {
-    title: 'Guides for Parents',
-    links: [
-      { label: 'Keeping kids safe in online games', href: '/learn/gaming-safety' },
-      { label: 'Setting up parental controls', href: '/learn/parental-controls' },
-      { label: 'Talking to teens about cyber bullying', href: '/learn/cyber-bullying' },
-    ],
+    title: 'Resources for Parents',
+    desc: 'Keep kids safe in online games, set up parental controls, and handle cyberbullying.',
+    href: '/audience/parent',
   },
   employee: {
-    title: 'Guides for Employees',
-    links: [
-      { label: 'Working safely from home', href: '/learn/remote-work' },
-      { label: 'Identifying phishing emails at work', href: '/scams/phishing' },
-      { label: 'Understanding your company VPN', href: '/dictionary/vpn' },
-    ],
+    title: 'Resources for Employees',
+    desc: 'Work safely from home, identify corporate phishing, and understand company VPNs.',
+    href: '/audience/employee',
   },
   business: {
-    title: 'Guides for Business Owners',
-    links: [
-      { label: 'Protecting against Ransomware', href: '/learn/ransomware-defense' },
-      { label: 'Training your team on cyber hygiene', href: '/learn/team-training' },
-      { label: 'What is Business Email Compromise (BEC)?', href: '/scams/bec' },
-    ],
+    title: 'Resources for Business Owners',
+    desc: 'Protect against Ransomware, train your team, and prevent Business Email Compromise.',
+    href: '/audience/business',
   },
   senior: {
-    title: 'Guides for Senior Citizens',
-    links: [
-      { label: 'How to spot tech support phone scams', href: '/scams/tech-support' },
-      { label: 'Safe online banking practices', href: '/learn/safe-banking' },
-      { label: 'Creating passwords you can remember', href: '/learn/passwords' },
-    ],
+    title: 'Resources for Senior Citizens',
+    desc: 'Spot tech support phone scams, practice safe online banking, and manage passwords easily.',
+    href: '/audience/senior',
   },
   it: {
     title: 'Resources for IT Professionals',
-    links: [
-      { label: 'Latest CVE updates explained', href: '/news/cve' },
-      { label: 'Cybersecurity posters for the office', href: '/downloads/posters' },
-      { label: 'Free internal training materials', href: '/downloads/training' },
-    ],
+    desc: 'Access the latest CVE explanations, download office training materials, and more.',
+    href: '/audience/it',
   },
 };
 &nbsp;
@@ -366,20 +302,15 @@ export default function PersonaSelector() {
         ))}
       &lt;/div&gt;
 &nbsp;
-      &lt;div className="bg-slate-50 rounded-xl p-6 border border-slate-100 min-h-[200px]" data-testid="content-area"&gt;
-        &lt;h3 className="text-xl font-bold text-slate-800 mb-4"&gt;{currentContent.title}&lt;/h3&gt;
-        &lt;ul className="space-y-3"&gt;
-          {currentContent.links.map((link, idx) =&gt; (
-            &lt;li key={idx} className="flex items-start"&gt;
-              &lt;svg className="w-5 h-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;
-                &lt;path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"&gt;&lt;/path&gt;
-              &lt;/svg&gt;
-              &lt;a href={link.href} className="text-slate-700 hover:text-blue-600 font-medium transition-colors"&gt;
-                {link.label}
-              &lt;/a&gt;
-            &lt;/li&gt;
-          ))}
-        &lt;/ul&gt;
+      &lt;div className="bg-slate-50 rounded-xl p-6 border border-slate-100 text-center" data-testid="content-area"&gt;
+        &lt;h3 className="text-xl font-bold text-slate-800 mb-3"&gt;{currentContent.title}&lt;/h3&gt;
+        &lt;p className="text-slate-600 mb-6 max-w-lg mx-auto"&gt;{currentContent.desc}&lt;/p&gt;
+        &lt;a 
+          href={currentContent.href} 
+          className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+        &gt;
+          View All {personas.find(p =&gt; p.id === activePersona)?.label} Guides &amp;rarr;
+        &lt;/a&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   );
@@ -391,7 +322,7 @@ export default function PersonaSelector() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-08-07T13:31:04.683Z
+                at 2026-08-07T14:18:41.778Z
             </div>
         <script src="prettify.js"></script>
         <script>

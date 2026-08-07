@@ -18,7 +18,7 @@ const allNews = await getCollection('news');
 const otherNews = allNews.filter(doc => doc.id !== entry.id).slice(0, 3);
 ---
 
-<MarkdownLayout frontmatter={entry.data}>
+<MarkdownLayout frontmatter={entry.data} url={Astro.url}>
   <Content />
 
   <div class="mt-16 pt-8 border-t border-slate-200 not-prose">

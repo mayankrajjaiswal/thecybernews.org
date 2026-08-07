@@ -1,0 +1,96 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const roadmaps = [
+    {
+      id: 'beginners',
+      title: 'Cyber Security for Beginners',
+      desc: 'The absolute essentials. Start here if you are overwhelmed.',
+      audiences: ['student', 'parent', 'senior'],
+      tags: ['Beginner']
+    },
+    {
+      id: 'small-business',
+      title: 'Small Business Security',
+      desc: 'Protect your company data, train employees, and defend against ransomware.',
+      audiences: ['business', 'it'],
+      tags: ['Intermediate', 'Advanced']
+    },
+    {
+      id: 'family',
+      title: 'Home & Family Internet Safety',
+      desc: 'Lock down your Wi-Fi and protect your children online.',
+      audiences: ['parent'],
+      tags: ['Beginner', 'Intermediate']
+    }
+  ];
+
+  const allGuides = await getCollection('learn');
+
+  return roadmaps.map(roadmap => {
+    // Match guides that fit the roadmap's target audiences
+    const matchingGuides = allGuides.filter(guide => 
+      guide.data.audience?.some(a => roadmap.audiences.includes(a))
+    );
+
+    return {
+      params: { slug: roadmap.id },
+      props: { roadmap, guides: matchingGuides },
+    };
+  });
+}
+
+const { roadmap, guides } = Astro.props;
+---
+
+<Layout title={`${roadmap.title} Roadmap`} description={roadmap.desc}>
+  <div class="bg-indigo-900 py-16 border-b border-indigo-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-indigo-300 font-bold uppercase tracking-wider text-sm mb-4 block">Guided Roadmap</span>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+        {roadmap.title}
+      </h1>
+      <p class="text-xl text-indigo-200 max-w-2xl mx-auto">
+        {roadmap.desc}
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="space-y-12">
+      {guides.map((guide, index) => (
+        <div class="relative flex items-start group">
+          {/* Connector Line */}
+          {index !== guides.length - 1 && (
+            <div class="absolute left-6 top-14 bottom-[-3rem] w-0.5 bg-indigo-100 group-hover:bg-indigo-300 transition-colors"></div>
+          )}
+          
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-lg border-4 border-white shadow-sm relative z-10 mr-6">
+            {index + 1}
+          </div>
+          
+          <div class="flex-grow bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-300 transition-all">
+            <div class="flex justify-between items-start mb-2">
+              <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">{guide.data.category}</span>
+              <span class="text-xs text-slate-500 font-medium bg-slate-100 px-2 py-1 rounded">{guide.data.difficulty || 'Beginner'}</span>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">
+              <a href={`/learn/${guide.id}`} class="hover:text-indigo-600 transition-colors before:absolute before:inset-0">
+                {guide.data.title}
+              </a>
+            </h3>
+            <p class="text-slate-600 mb-4">{guide.data.description}</p>
+            <div class="text-sm font-medium text-slate-500 flex items-center">
+              <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {guide.data.readingTime || '5 min'}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
