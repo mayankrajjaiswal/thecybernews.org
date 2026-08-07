@@ -4,6 +4,12 @@ category: Scam Alert
 audience: ['senior', 'parent', 'student']
 severity: High
 description: A text message claiming a package couldn't be delivered due to an unpaid fee or wrong address.
+platform: ['SMS (Text Message)']
+country: ['Global']
+industries: ['Logistics', 'Retail']
+reportingLinks:
+  - label: 'USPS Postal Inspection Service'
+    url: 'https://www.uspis.gov/report'
 ---
 
 ## What is it?

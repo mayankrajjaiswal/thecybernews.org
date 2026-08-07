@@ -57,16 +57,15 @@ The platform is structured around six main interconnected pillars:
 * **Feature:** A highly optimized, strictly client-side search engine integrated into the main navigation header.
 * **Purpose:** Allows users to perform instant, fuzzy searches across the entire dictionary, scam database, and educational hubs without relying on a slow backend server.
 
-### 9. Internal Linking & SEO Engine
-* **Internal Linking:** Every article automatically generates a "Continue Learning" or "Related Links" section at the bottom, ensuring users never hit a dead end.
-* **Breadcrumb Navigation:** Every single article and guide automatically generates SEO-friendly breadcrumb navigation at the top of the page.
-* **Automated SEO Schemas:** The site automatically generates Canonical URLs, OpenGraph (Facebook) tags, Twitter Cards, and `robots.txt`. Most importantly, it injects structured JSON-LD (`Article` and `BreadcrumbList`) into every Markdown page, ensuring Google indexes the content perfectly for rich search results. An automated XML Sitemap is generated at `sitemap-index.xml`.
+### 9. Interactive Quizzes & MDX Support (Phase 3)
+* **Feature:** The content engine has been upgraded to support `.mdx` files. This allows you to write standard Markdown while safely embedding interactive React components directly into the text.
+* **Purpose:** Gamifies the learning experience. Editors can drop the `<KnowledgeCheck />` component at the bottom of any `.mdx` file to test users on the material they just read.
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Framework:** [Astro](https://astro.build/) (Static Site Generation with Content Collections v7)
+* **Framework:** [Astro](https://astro.build/) (Static Site Generation with Content Collections v7 and MDX integration)
 * **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) + Tailwind Typography 
 * **Interactive UI:** [React](https://react.dev/) (For client-side "Islands")
 * **Testing:** [Vitest](https://vitest.dev/) + React Testing Library (Verified at **99.18% test coverage**)
@@ -110,12 +109,32 @@ title: Your Article Title
 category: [Scam Alert | Dictionary Term | Guide | News Explained]
 description: A short 1-2 sentence summary for Google Search and index cards.
 audience: ['parent', 'student', 'business', 'employee', 'senior', 'it'] # Add any relevant personas here
+author: 'John Doe'
+reviewer: 'Jane Smith, CISSP'
+version: '1.0'
 ---
 ```
 *(Note: Some collections require extra fields. E.g., `src/content/scams/` requires a `severity: [Low | Medium | High | Critical]` field. Check `src/content.config.ts` for exact schemas).*
 
 ### Content Templates by Pillar
 To maintain consistency, writers and AI agents MUST follow these structures for the body content:
+
+**For Interactive Guides (`src/content/learn/*.mdx`)**
+You can embed quizzes at the bottom of guides to reinforce learning:
+```mdx
+## Your markdown content here...
+
+import KnowledgeCheck from '../../components/KnowledgeCheck.tsx';
+
+<KnowledgeCheck client:load questions={[
+  {
+    question: "Your question here?",
+    options: ["Wrong Answer", "Correct Answer", "Wrong Answer"],
+    correctAnswerIndex: 1,
+    explanation: "Here is why this is the correct answer."
+  }
+]} />
+```
 
 **For "News Explained" (`src/content/news/`)**
 ```markdown

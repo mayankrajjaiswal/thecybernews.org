@@ -21,12 +21,13 @@ const { title, size } = Astro.props;
     <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">{title}</h1>
     <p class="text-lg text-slate-600 mb-8">({size})</p>
     
-    <div class="bg-blue-50 border border-blue-200 p-6 rounded-xl max-w-lg">
+    <div class="bg-blue-50 border border-blue-200 p-6 rounded-xl max-w-lg shadow-sm">
+      <h2 class="text-blue-900 font-bold text-xl mb-2">Check Back Soon</h2>
       <p class="text-blue-800 font-medium">
-        This file is currently being finalized by our editorial team. The PDF download will be available shortly.
+        This resource is currently being designed and verified by our editorial team. The high-resolution PDF download will be available shortly.
       </p>
     </div>
     
-    <a href="/downloads" class="mt-8 text-blue-600 font-semibold hover:underline">&larr; Back to Downloads Hub</a>
+    <a href="/downloads" class="mt-8 text-blue-600 font-bold hover:text-blue-800 transition-colors">&larr; Back to Downloads Hub</a>
   </div>
 </Layout>

@@ -4,6 +4,12 @@ category: Scam Alert
 audience: ['senior', 'parent', 'student']
 severity: Critical
 description: A friend messages you asking for a 6-digit code they accidentally sent to your phone.
+platform: ['WhatsApp', 'SMS']
+country: ['Global']
+industries: ['Telecommunications']
+reportingLinks:
+  - label: 'WhatsApp Support'
+    url: 'https://www.whatsapp.com/contact/'
 ---
 
 ## What is it?

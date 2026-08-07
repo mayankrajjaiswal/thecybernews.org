@@ -116,17 +116,41 @@ if (frontmatter.relatedTopics && frontmatter.relatedTopics.length > 0) {
               {frontmatter.category}
             </span>
           )}
-          <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4 leading-tight">
+          <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
             {frontmatter.title}
           </h1>
-          {frontmatter.date && (
-            <p class="text-slate-500 text-sm flex items-center">
-              <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          
+          {/* Feature 19: Content Review System Trust Badge */}
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-wrap items-center gap-4 text-sm text-slate-600 mb-8">
+            {frontmatter.author && (
+              <div class="flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                </svg>
+                Author: <span class="font-medium text-slate-900 ml-1">{frontmatter.author}</span>
+              </div>
+            )}
+            {frontmatter.reviewer && (
+              <div class="flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6.267 3.441A11 11 0 0112 2c2.65 0 5.122.923 7.042 2.47a.75.75 0 01.12 1.05l-8.5 10a.75.75 0 01-1.127.02l-4-4.5a.75.75 0 011.13-1.004l3.415 3.842 7.747-9.115A9.489 9.489 0 0012 3.5a9.5 9.5 0 00-6.732 2.65.75.75 0 01-1.001-1.07V3.441z" clip-rule="evenodd" />
+                  <path d="M4 14a1 1 0 011-1h5a1 1 0 110 2H5a1 1 0 01-1-1z" />
+                </svg>
+                Reviewed by: <span class="font-medium text-slate-900 ml-1">{frontmatter.reviewer}</span>
+              </div>
+            )}
+            <div class="flex items-center">
+              <svg class="w-4 h-4 mr-1.5 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
               </svg>
-              Last updated: {new Date(frontmatter.date).toLocaleDateString()}
-            </p>
-          )}
+              Updated: <span class="font-medium text-slate-900 ml-1">{frontmatter.lastUpdated || frontmatter.date ? new Date(frontmatter.lastUpdated || frontmatter.date).toLocaleDateString() : 'Recently'}</span>
+            </div>
+            {frontmatter.version && (
+              <div class="flex items-center ml-auto">
+                <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-0.5 rounded">v{frontmatter.version}</span>
+              </div>
+            )}
+          </div>
         </div>
         
         <article class="prose prose-slate prose-lg max-w-none prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-img:rounded-xl prose-img:shadow-md">

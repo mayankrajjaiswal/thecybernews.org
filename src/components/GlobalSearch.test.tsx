@@ -22,15 +22,15 @@ describe('GlobalSearch Component', () => {
     
     // Typing opens it
     fireEvent.change(input, { target: { value: 'password' } });
-    expect(screen.getByText(/No results found/)).toBeInTheDocument();
+    expect(screen.getByText(/Search is disabled in Dev Mode/)).toBeInTheDocument();
 
     // Clicking away closes it (simulated)
     fireEvent.mouseDown(document.body);
-    expect(screen.queryByText(/No results found/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Search is disabled in Dev Mode/)).not.toBeInTheDocument();
 
     // Focusing opens it again
     fireEvent.focus(input);
-    expect(screen.getByText(/No results found/)).toBeInTheDocument();
+    expect(screen.getByText(/Search is disabled in Dev Mode/)).toBeInTheDocument();
   });
 
   // Because the actual pagefind import is bypassed in testing via __VITEST__, 

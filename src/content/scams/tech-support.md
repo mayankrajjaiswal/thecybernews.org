@@ -4,6 +4,12 @@ category: Scam Alert
 audience: ['senior', 'parent']
 severity: Medium
 description: A loud, full-screen warning on your computer claiming it is infected with a virus and to call a number immediately.
+platform: ['Web Browser', 'Phone Calls']
+country: ['US', 'Canada', 'UK', 'Australia']
+industries: ['Consumer Technology']
+reportingLinks:
+  - label: 'Microsoft Scam Reporting'
+    url: 'https://www.microsoft.com/en-us/concern/scam'
 ---
 
 ## What is it?

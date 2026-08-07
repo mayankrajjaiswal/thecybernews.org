@@ -4,6 +4,12 @@ category: Scam Alert
 audience: ['business', 'employee', 'it']
 severity: Critical
 description: A highly sophisticated scam where criminals impersonate an executive or vendor to steal millions from businesses.
+platform: ['Email']
+country: ['Global']
+industries: ['Finance', 'Real Estate', 'Legal']
+reportingLinks:
+  - label: 'FBI Internet Crime Complaint Center (IC3)'
+    url: 'https://www.ic3.gov/'
 ---
 
 ## What is it?

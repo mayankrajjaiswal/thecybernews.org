@@ -11,16 +11,18 @@ export default function GlobalSearch() {
   // Initialize Pagefind only on the client side
   useEffect(() => {
     async function loadPagefind() {
-      // Don't attempt to load pagefind during vitest runs
-      if (typeof window !== 'undefined' && !(window as any).__VITEST__) {
+      // Check if we are running in Vite Dev Mode
+      const isDev = import.meta.env?.DEV;
+      
+      // Don't attempt to load pagefind during vitest runs or dev mode to prevent 404s
+      if (typeof window !== 'undefined' && !(window as any).__VITEST__ && !isDev) {
         try {
-          // Construct URL dynamically to avoid Vite static analysis crashing on missing file during dev
           const pfUrl = '/pagefind/pagefind.js';
           const pf = await import(/* @vite-ignore */ pfUrl);
           await pf.init();
           setPagefind(pf);
         } catch (e) {
-          console.warn('Pagefind not available during dev mode or failed to load.');
+          console.warn('Pagefind failed to load.', e);
         }
       }
     }
@@ -42,6 +44,17 @@ export default function GlobalSearch() {
     const value = e.target.value;
     setQuery(value);
     setIsOpen(true);
+    
+    const isDev = import.meta.env?.DEV;
+    if (isDev) {
+       // In dev mode, fake a response so the UI still works
+       setResults([{
+         url: '#',
+         meta: { title: 'Search is disabled in Dev Mode' },
+         excerpt: 'Run <code>npm run build</code> to generate the search index.'
+       }]);
+       return;
+    }
 
     if (!value.trim() || !pagefind) {
       setResults([]);

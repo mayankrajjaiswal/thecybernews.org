@@ -4,6 +4,12 @@ category: Scam Alert
 audience: ['student', 'employee']
 severity: Medium
 description: Scammers prey on desperate job seekers, offering high-paying remote work to steal identities or trick victims into cashing fake checks.
+platform: ['LinkedIn', 'Indeed', 'Telegram', 'WhatsApp']
+country: ['US', 'UK', 'India']
+industries: ['Data Entry', 'Freelance']
+reportingLinks:
+  - label: 'FTC Fraud Reporting'
+    url: 'https://reportfraud.ftc.gov/'
 ---
 
 ## What is it?
