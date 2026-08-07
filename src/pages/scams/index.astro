@@ -1,0 +1,77 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const scams = [
+  {
+    title: 'The "Package Delivery" Text Scam',
+    type: 'Smishing (SMS Phishing)',
+    description: 'A text message claiming a package couldn\'t be delivered due to an unpaid fee or wrong address.',
+    href: '/scams/package-delivery',
+    urgency: 'High',
+  },
+  {
+    title: 'WhatsApp Account Hijacking',
+    type: 'Social Engineering',
+    description: 'A friend messages you asking for a 6-digit code they accidentally sent to your phone.',
+    href: '/scams/whatsapp-hijack',
+    urgency: 'Critical',
+  },
+  {
+    title: 'Tech Support Pop-up Scam',
+    type: 'Browser Hijacking',
+    description: 'A loud, full-screen warning on your computer claiming it is infected with a virus and to call a number immediately.',
+    href: '/scams/tech-support',
+    urgency: 'Medium',
+  },
+  {
+    title: 'UPI & Payment App Fraud',
+    type: 'Payment Fraud',
+    description: 'Scammers requesting you to enter your PIN to *receive* a payment on apps like Google Pay or Venmo.',
+    href: '/scams/upi-fraud',
+    urgency: 'High',
+  }
+];
+
+const urgencyColors = {
+  Critical: 'bg-red-100 text-red-800 border-red-200',
+  High: 'bg-orange-100 text-orange-800 border-orange-200',
+  Medium: 'bg-yellow-100 text-yellow-800 border-yellow-200',
+};
+---
+
+<Layout title="Scam Alerts" description="Tactical teardowns of active fraud schemes and how to avoid them.">
+  <div class="bg-red-50 py-16 border-b border-red-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-red-900 tracking-tight mb-4">
+        Active Scam Alerts
+      </h1>
+      <p class="text-xl text-red-800 max-w-2xl mx-auto">
+        Learn exactly how modern scams work, see real screenshots, and find out what to do if you're targeted.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {scams.map((scam) => (
+        <a href={scam.href} class="block bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow group">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-sm font-semibold text-slate-500 uppercase tracking-wider">{scam.type}</span>
+            <span class={`text-xs px-2.5 py-1 rounded-full font-bold border ${urgencyColors[scam.urgency]}`}>
+              {scam.urgency} Alert
+            </span>
+          </div>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
+            {scam.title}
+          </h2>
+          <p class="text-slate-600 leading-relaxed mb-4">
+            {scam.description}
+          </p>
+          <div class="flex items-center text-blue-600 font-semibold text-sm">
+            Read Teardown &rarr;
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

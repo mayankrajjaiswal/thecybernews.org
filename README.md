@@ -1,43 +1,101 @@
-# Astro Starter Kit: Minimal
+# TheCyberNews.org 🛡️
 
-```sh
-npm create astro@latest -- --template minimal
-```
+**The world's most practical cybersecurity knowledge platform.**
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Unlike traditional cybersecurity news websites that cater to IT professionals, **TheCyberNews.org** is built for everyday people—parents, students, senior citizens, and non-technical employees. Think of it as the "Wikipedia + Consumer Reports + Khan Academy" of cybersecurity.
 
-## 🚀 Project Structure
+## 🚀 The Vision & Core Pillars
 
-Inside of your Astro project, you'll see the following folders and files:
+The platform is structured around four main pillars, designed to be actionable and jargon-free:
+
+1. **Zero to Hero (`/learn`):** A structured learning path taking users from absolute beginners to cybersecurity confident.
+2. **Scam Alerts (`/scams`):** Tactical teardowns of active fraud schemes (like WhatsApp hijacking or UPI fraud) with real screenshots and immediate mitigation steps.
+3. **Cyber Dictionary (`/dictionary`):** Complex technical jargon translated into simple, everyday English.
+4. **Cyber Toolbox (`/tools`):** Free, secure client-side tools (like a Password Generator) and downloadable PDF cheat sheets.
+
+---
+
+## 🛠️ Tech Stack
+
+This site is built for maximum speed, security, and SEO, utilizing a modern static site architecture:
+
+* **Framework:** [Astro](https://astro.build/) (Static Site Generation)
+* **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) + Tailwind Typography (for automatic Markdown styling)
+* **Interactive UI:** [React](https://react.dev/) (Used exclusively for client-side "Islands" like the Persona Selector and Web Tools)
+* **Testing:** [Vitest](https://vitest.dev/) + React Testing Library (>95% coverage target)
+* **Hosting:** GitHub Pages (Automated via GitHub Actions)
+
+---
+
+## 📂 Project Structure
 
 ```text
 /
-├── public/
+├── .github/workflows/   # CI/CD pipelines (Auto-deploys to GitHub pages)
+├── public/              # Static assets (images, PDFs, fonts)
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/      # React and Astro UI components (e.g., PersonaSelector.tsx)
+│   ├── layouts/         # Page wrappers (Layout.astro, MarkdownLayout.astro)
+│   ├── styles/          # Global CSS and Tailwind imports
+│   └── pages/           # File-based routing
+│       ├── index.astro       # The Homepage
+│       ├── dictionary/       # Dictionary index & markdown terms
+│       ├── learn/            # Zero to Hero curriculum index & modules
+│       ├── scams/            # Scam alerts index & markdown teardowns
+│       └── tools/            # Toolbox index & interactive utilities
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## ✍️ How to Add Content
 
-Any static assets, like images, can be placed in the `public/` directory.
+You do not need to write code to add new articles! The site uses a **Markdown-First** architecture. 
 
-## 🧞 Commands
+To publish a new guide, scam alert, or dictionary term, simply create a new `.md` file in the appropriate folder (`src/pages/dictionary/`, `src/pages/scams/`, etc.).
 
-All commands are run from the root of the project, from a terminal:
+**Required Markdown Template:**
+Always paste this at the top of your `.md` file to automatically inherit the site's styling:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```markdown
+---
+layout: ../../layouts/MarkdownLayout.astro
+title: Your Article Title
+category: Scam Alert / Dictionary Term / Guide
+date: 2026-08-07
+description: A short 1-2 sentence summary for Google Search.
+---
 
-## 👀 Want to learn more?
+## Your Heading Here
+Start writing your content here in plain text.
+* Use bullet points
+* **Bold text**
+* [Links](https://example.com)
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+
+## 💻 Local Development Commands
+
+All commands are run from the root of the project in your terminal:
+
+| Command | Action |
+| :--- | :--- |
+| `npm install` | Installs project dependencies. |
+| `npm run dev` | Starts the local development server at `localhost:4321`. |
+| `npm run build` | Builds the production static site into the `./dist/` folder. |
+| `npm run preview` | Previews your production build locally. |
+| `npm run test` | Runs the Vitest unit testing suite. |
+| `npm run test:coverage` | Runs tests and generates a test coverage report. |
+
+---
+
+## ☁️ Deployment
+
+This project uses **GitHub Actions** for Continuous Deployment. 
+
+Every time you push or merge a commit into the `main` branch, the `deploy.yml` workflow will automatically:
+1. Install dependencies.
+2. Run the test suite to ensure nothing is broken.
+3. Build the Astro static site.
+4. Publish the output directly to **GitHub Pages**.

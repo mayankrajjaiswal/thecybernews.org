@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+const terms = [
+  { term: 'Botnet', href: '/dictionary/botnet', shortDesc: 'A network of infected computers controlled by a single attacker.' },
+  { term: 'Deepfake', href: '/dictionary/deepfake', shortDesc: 'A video or audio clip digitally altered to look or sound like someone else.' },
+  { term: 'Encryption', href: '/dictionary/encryption', shortDesc: 'Scrambling data so that only authorized parties can read it.' },
+  { term: 'Phishing', href: '/dictionary/phishing', shortDesc: 'Fraudulent emails designed to trick you into revealing sensitive information.' },
+  { term: 'Ransomware', href: '/dictionary/ransomware', shortDesc: 'Malicious software that locks your files until you pay a ransom.' },
+  { term: 'Zero-Day', href: '/dictionary/zero-day', shortDesc: 'A newly discovered software flaw that hackers exploit before the software creator can fix it.' },
+];
+---
+
+<Layout title="Cyber Dictionary" description="Complex technical jargon translated into simple, everyday English.">
+  <div class="bg-emerald-50 py-16 border-b border-emerald-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-emerald-900 tracking-tight mb-4">
+        The Cyber Dictionary
+      </h1>
+      <p class="text-xl text-emerald-800 max-w-2xl mx-auto">
+        No IT degree required. We translate confusing cybersecurity jargon into plain English.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    {/* Alphabet Quick Jump */}
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      {alphabet.map(letter => (
+        <a href={`#letter-${letter}`} class="w-10 h-10 flex items-center justify-center rounded-lg bg-white border border-slate-200 text-slate-600 font-semibold hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200 transition-colors">
+          {letter}
+        </a>
+      ))}
+    </div>
+
+    {/* Search Box */}
+    <div class="mb-16">
+      <div class="relative max-w-2xl mx-auto">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <svg class="h-6 w-6 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <input type="text" class="block w-full pl-12 pr-4 py-4 border border-slate-300 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 sm:text-lg shadow-sm" placeholder="Search for a term (e.g., Ransomware)..." />
+      </div>
+    </div>
+
+    {/* Term List */}
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <ul class="divide-y divide-slate-100">
+        {terms.map(item => (
+          <li>
+            <a href={item.href} class="block p-6 hover:bg-slate-50 transition-colors">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900 mb-1">{item.term}</h3>
+                  <p class="text-slate-600">{item.shortDesc}</p>
+                </div>
+                <div class="mt-4 sm:mt-0 flex-shrink-0 text-emerald-600 font-medium">
+                  Read definition &rarr;
+                </div>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</Layout>
