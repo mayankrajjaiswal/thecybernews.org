@@ -43,7 +43,11 @@ The platform is structured around six main interconnected pillars:
 * **Feature:** Free, secure client-side interactive tools.
 * **Implemented Tools:** Secure Password Generator, URL Decoder, and Password Breach Checker (utilizing secure `k-Anonymity`).
 
-### 7. Internal Linking Engine
+### 7. Curated Resources (`/resources`)
+* **Feature:** A directory of trusted external organizations, government agencies, and community databases.
+* **Purpose:** Provides a safe, vetted list of external links (like CISA or HaveIBeenPwned) so users don't have to rely on Google search results where scammers buy fake ads.
+
+### 8. Internal Linking Engine
 * **Feature:** Because content is stored in Astro Content Collections, every article automatically generates a "Continue Learning" or "Related Links" section at the bottom, ensuring users never hit a dead end.
 
 ### 8. Breadcrumb Navigation
@@ -128,6 +132,17 @@ To maintain consistency, writers and AI agents MUST follow these structures for 
 [Preventative measures]
 ## What to do if you are affected
 [Recovery steps]
+```
+
+**For "Curated Resources" (`src/content/resources/`)**
+*Note: The frontmatter for resources must include `url` and `type: [Government | Framework | Community | Corporate]`.*
+```markdown
+## Overview
+[What is this organization or website?]
+## Why It Matters
+[Why a layman or business owner should care about this resource]
+## Popular Resources
+[Bulleted list of their top tools or documents]
 ```
 
 ---

@@ -49,9 +49,18 @@ const newsCollection = defineCollection({
   }),
 });
 
+const resourcesCollection = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/resources' }),
+  schema: baseSchema.extend({
+    url: z.string().url(), // the official external link
+    type: z.enum(['Government', 'Framework', 'Community', 'Corporate']),
+  }),
+});
+
 export const collections = {
   learn: learnCollection,
   scams: scamsCollection,
   dictionary: dictionaryCollection,
   news: newsCollection,
+  resources: resourcesCollection,
 };
