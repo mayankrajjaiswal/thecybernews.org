@@ -1,12 +1,21 @@
 ---
 import '../styles/global.css';
+import GlobalSearch from '../components/GlobalSearch';
 
 interface Props {
   title: string;
   description: string;
+  image?: string;
 }
 
-const { title, description } = Astro.props;
+const { 
+  title, 
+  description,
+  image = '/default-social-card.png' // You will need to add this image to /public later
+} = Astro.props;
+
+// Construct full canonical URL
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://thecybernews.org');
 ---
 
 <!doctype html>
@@ -14,21 +23,41 @@ const { title, description } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title === 'Home' ? 'TheCyberNews | The Practical Cybersecurity Knowledge Platform' : `${title} | TheCyberNews`}</title>
     <meta name="description" content={description} />
-    <title>{title} | TheCyberNews</title>
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${title} | TheCyberNews`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, canonicalURL)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={`${title} | TheCyberNews`} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, canonicalURL)} />
+
     <!-- Add standard favicon later -->
   </head>
   <body class="bg-slate-50 text-slate-900 font-sans antialiased flex flex-col min-h-screen">
     <header class="bg-white shadow-sm border-b border-slate-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <a href="/" class="text-2xl font-bold tracking-tight text-blue-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-8">
+        <a href="/" class="text-2xl font-bold tracking-tight text-blue-700 flex-shrink-0">
           TheCyberNews
         </a>
-        <nav class="hidden md:flex space-x-8">
+        <div class="flex-grow max-w-xl">
+          <GlobalSearch client:idle />
+        </div>
+        <nav class="hidden lg:flex space-x-6 flex-shrink-0">
           <a href="/learn" class="text-slate-600 hover:text-blue-600 font-medium">Learn Cyber</a>
           <a href="/scams" class="text-slate-600 hover:text-blue-600 font-medium">Scam Alerts</a>
-          <a href="/news" class="text-slate-600 hover:text-blue-600 font-medium">News Explained</a>
+          <a href="/dictionary" class="text-slate-600 hover:text-blue-600 font-medium">Dictionary</a>
           <a href="/tools" class="text-slate-600 hover:text-blue-600 font-medium">Toolbox</a>
+          <a href="/academy" class="text-indigo-600 hover:text-indigo-800 font-bold bg-indigo-50 px-4 py-1.5 rounded-full border border-indigo-100 transition-colors">Academy Dashboard</a>
         </nav>
       </div>
     </header>
@@ -49,13 +78,16 @@ const { title, description } = Astro.props;
             <li><a href="/learn" class="hover:text-white transition-colors">Zero to Hero</a></li>
             <li><a href="/scams" class="hover:text-white transition-colors">Latest Scams</a></li>
             <li><a href="/dictionary" class="hover:text-white transition-colors">Cyber Dictionary</a></li>
+            <li><a href="/news" class="hover:text-white transition-colors">News Explained</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="text-white font-semibold mb-4">Resources</h4>
+          <h4 class="text-white font-semibold mb-4">Extras</h4>
           <ul class="space-y-2 text-sm">
+            <li><a href="/academy" class="hover:text-white transition-colors text-indigo-400 font-semibold">Academy Dashboard</a></li>
             <li><a href="/tools" class="hover:text-white transition-colors">Cyber Toolbox</a></li>
-            <li><a href="/downloads" class="hover:text-white transition-colors">Downloads & Posters</a></li>
+            <li><a href="/downloads" class="hover:text-white transition-colors">Downloads Hub</a></li>
+            <li><a href="/resources" class="hover:text-white transition-colors">Curated Resources</a></li>
           </ul>
         </div>
       </div>

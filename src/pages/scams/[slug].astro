@@ -1,0 +1,87 @@
+---
+import { getCollection, render } from 'astro:content';
+import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+
+export async function getStaticPaths() {
+  const allScams = await getCollection('scams');
+  return allScams.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Feature 13 / 18: Link other scams
+const allScams = await getCollection('scams');
+const otherScams = allScams.filter(doc => doc.id !== entry.id).slice(0, 3);
+---
+
+<MarkdownLayout frontmatter={entry.data} url={Astro.url}>
+  <Content />
+
+  {/* Feature 8: Scam Intelligence Database Output */}
+  {(entry.data.platform || entry.data.reportingLinks) && (
+    <div class="mt-12 bg-red-50 border border-red-200 rounded-2xl p-6 md:p-8 not-prose">
+      <h3 class="text-2xl font-bold text-red-900 mb-6 flex items-center">
+        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        Intelligence Brief
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {entry.data.platform && (
+          <div>
+            <h4 class="font-bold text-slate-800 text-sm uppercase tracking-wider mb-2">Platforms Used</h4>
+            <div class="flex flex-wrap gap-2">
+              {entry.data.platform.map((p: string) => (
+                <span class="bg-white border border-slate-200 text-slate-700 px-3 py-1 rounded-lg text-sm font-medium">{p}</span>
+              ))}
+            </div>
+          </div>
+        )}
+        {entry.data.industries && (
+          <div>
+            <h4 class="font-bold text-slate-800 text-sm uppercase tracking-wider mb-2">Targeted Industries</h4>
+            <div class="flex flex-wrap gap-2">
+              {entry.data.industries.map((i: string) => (
+                <span class="bg-white border border-slate-200 text-slate-700 px-3 py-1 rounded-lg text-sm font-medium">{i}</span>
+              ))}
+            </div>
+          </div>
+        )}
+        {entry.data.reportingLinks && (
+          <div class="md:col-span-2 mt-4 pt-4 border-t border-red-200/50">
+            <h4 class="font-bold text-slate-800 text-sm uppercase tracking-wider mb-3">Official Reporting Links</h4>
+            <ul class="space-y-2">
+              {entry.data.reportingLinks.map((link: any) => (
+                <li>
+                  <a href={link.url} target="_blank" rel="noopener noreferrer" class="text-red-700 font-semibold hover:text-red-900 hover:underline flex items-center">
+                    {link.label}
+                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  )}
+
+  <div class="mt-16 pt-8 border-t border-slate-200 not-prose">
+    <h3 class="text-2xl font-bold text-slate-900 mb-6 font-sans">Other Active Scam Alerts</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {otherScams.map(scam => (
+        <a href={`/scams/${scam.id}`} class="block bg-slate-50 rounded-xl p-5 border border-slate-200 hover:border-red-300 hover:shadow-sm transition-all group">
+          <span class="text-xs font-bold text-red-600 uppercase tracking-wider mb-2 block">{scam.data.category}</span>
+          <h4 class="font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{scam.data.title}</h4>
+          <p class="text-sm text-slate-600 line-clamp-2">{scam.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</MarkdownLayout>

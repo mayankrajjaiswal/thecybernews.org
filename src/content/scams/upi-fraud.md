@@ -4,6 +4,12 @@ title: UPI & Payment App Fraud
 category: Scam Alert
 date: 2026-08-07
 description: Learn how scammers trick you into sending money by asking you to enter your UPI or payment app PIN to "receive" a payment.
+platform: ['Google Pay', 'PhonePe', 'Venmo', 'Zelle']
+country: ['India', 'US']
+industries: ['Peer-to-Peer Payments']
+reportingLinks:
+  - label: 'National Cyber Crime Reporting Portal (IN)'
+    url: 'https://cybercrime.gov.in/'
 ---
 
 ## What is it?

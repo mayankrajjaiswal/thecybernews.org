@@ -1,16 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
-const terms = [
-  { term: 'Botnet', href: '/dictionary/botnet', shortDesc: 'A network of infected computers controlled by a single attacker.' },
-  { term: 'Deepfake', href: '/dictionary/deepfake', shortDesc: 'A video or audio clip digitally altered to look or sound like someone else.' },
-  { term: 'Encryption', href: '/dictionary/encryption', shortDesc: 'Scrambling data so that only authorized parties can read it.' },
-  { term: 'Phishing', href: '/dictionary/phishing', shortDesc: 'Fraudulent emails designed to trick you into revealing sensitive information.' },
-  { term: 'Ransomware', href: '/dictionary/ransomware', shortDesc: 'Malicious software that locks your files until you pay a ransom.' },
-  { term: 'Zero-Day', href: '/dictionary/zero-day', shortDesc: 'A newly discovered software flaw that hackers exploit before the software creator can fix it.' },
-];
+const allTerms = await getCollection('dictionary');
+const terms = allTerms.sort((a, b) => a.data.title.localeCompare(b.data.title));
 ---
 
 <Layout title="Cyber Dictionary" description="Complex technical jargon translated into simple, everyday English.">
@@ -52,11 +47,11 @@ const terms = [
       <ul class="divide-y divide-slate-100">
         {terms.map(item => (
           <li>
-            <a href={item.href} class="block p-6 hover:bg-slate-50 transition-colors">
+            <a href={`/dictionary/${item.id}`} class="block p-6 hover:bg-slate-50 transition-colors">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <h3 class="text-xl font-bold text-slate-900 mb-1">{item.term}</h3>
-                  <p class="text-slate-600">{item.shortDesc}</p>
+                  <h3 class="text-xl font-bold text-slate-900 mb-1">{item.data.title}</h3>
+                  <p class="text-slate-600 line-clamp-2">{item.data.description}</p>
                 </div>
                 <div class="mt-4 sm:mt-0 flex-shrink-0 text-emerald-600 font-medium">
                   Read definition &rarr;

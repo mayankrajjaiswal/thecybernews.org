@@ -7,32 +7,37 @@ Unlike traditional cybersecurity news websites that cater to IT professionals, *
 
 ## 🤖 AI Agent Guidelines
 **Attention AI Assistants:** If you are reading this file to understand the project context, you MUST adhere to the following mandates:
-1. **The Audience:** All text generation must be jargon-free and aimed at laypeople. No "IT speak" unless it is explicitly being defined in the Dictionary.
-2. **The Stack:** This is an **Astro** static site. Markdown (`.md`) is used for all content. **React** (`.tsx`) is used *strictly* for interactive client-side islands (like the Toolbox). Do not attempt to use React for standard page layouts; use Astro (`.astro`).
-3. **Styling:** Use **Tailwind CSS v4**. Do not write custom CSS unless absolutely necessary. Rely on the `@tailwindcss/typography` plugin (`prose` classes) to style all markdown content.
-4. **Testing:** This project maintains a strict **>95% test coverage** requirement using Vitest and React Testing Library. If you modify or add a React component in `src/components/`, you MUST update or create a corresponding `.test.tsx` file and verify coverage by running `npm run test:coverage`.
-5. **No Server-Side Logic:** This site is hosted on GitHub Pages. You cannot use server-side rendering (SSR), databases, or API endpoints. Everything must be purely static or client-side.
+1. **The Content Model (Astro Content Collections v7):** Do NOT place markdown files in `src/pages/`. All markdown content MUST be placed in their respective folders within `src/content/` (e.g., `src/content/scams/`). 
+2. **Type-Safe Frontmatter:** All markdown files are validated at build-time by Zod schemas defined in `src/content.config.ts`. You must provide all required frontmatter fields (like `title`, `description`, `category`) or the build will fail. Do NOT include a `layout:` property in the frontmatter; layouts are handled dynamically by Astro routing.
+3. **The Audience:** All text generation must be jargon-free and aimed at laypeople. No "IT speak" unless it is explicitly being defined in the Dictionary.
+4. **The Stack:** **React** (`.tsx`) is used *strictly* for interactive client-side islands (like the Toolbox). Do not attempt to use React for standard page layouts; use Astro (`.astro`).
+5. **Styling:** Use **Tailwind CSS v4**. Do not write custom CSS unless absolutely necessary. Rely on the `@tailwindcss/typography` plugin (`prose` classes) to style all markdown content.
+6. **Testing:** This project maintains a strict **>95% test coverage** requirement using Vitest and React Testing Library. If you modify or add a React component in `src/components/`, you MUST update or create a corresponding `.test.tsx` file and verify coverage by running `npm run test:coverage`.
 
 ---
 
 ## 🚀 The Core Pillars & Implemented Features
 
-The platform is structured around five main pillars, all of which are fully implemented and ready for scale:
+The platform is structured around six main interconnected pillars:
 
-### 1. The Home Hub (`/`)
-* **Feature:** A fully responsive homepage featuring the **Persona Selector** (React Component).
-* **Purpose:** Allows users to identify themselves (e.g., Parent, Senior, Business Owner) and instantly displays curated content links relevant to their specific lifestyle.
+### 1. The Home Hub & Audience Navigation (`/audience`)
+* **Feature:** A fully responsive homepage featuring the **Persona Selector** (React Component) which links directly to dedicated **Audience Hubs** (e.g., `/audience/parent`).
+* **Purpose:** The Audience Hubs dynamically read the `audience` tag from your markdown files and automatically assemble a customized landing page showing all guides and scam alerts relevant to that specific lifestyle.
 
-### 2. Zero to Hero (`/learn`)
-* **Feature:** A structured, chronological learning path.
-* **Purpose:** Takes users from absolute beginners (Passwords/MFA) to intermediate (Home Wi-Fi) and advanced (VPNs/Footprints).
+### 2. The Cyber Academy Dashboard (`/academy`)
+* **Feature:** A purely client-side progress dashboard.
+* **Purpose:** Gamifies the educational roadmaps. It tracks the user's progress through the guides using `localStorage`, awarding visual badges (e.g., "Cyber Defender") and offering a downloadable certificate when they complete specific curriculums, all without requiring user accounts or backend databases.
+
+### 3. Zero to Hero & Guided Roadmaps (`/learn`, `/roadmaps`)
+* **Feature:** Curated learning paths based on specific profiles (e.g., "Small Business Security" or "Family Internet Safety").
+* **Purpose:** Instead of a generic "Zero to Hero" path, these roadmaps dynamically query the content database using the `audience` tag. This allows the system to automatically generate sequential curriculums tailored to specific user needs, expanding Feature 6 of the architectural plan.
 
 ### 3. Scam Alerts (`/scams`)
-* **Feature:** A directory of active fraud schemes categorized by urgency (High/Medium/Critical).
-* **Purpose:** Tactical teardowns of active scams (like WhatsApp hijacking or UPI fraud) with real screenshots and immediate mitigation steps.
+* **Feature:** A directory of active fraud schemes.
+* **Purpose:** Tactical teardowns of active scams with real screenshots and immediate mitigation steps.
 
 ### 4. Cyber Dictionary (`/dictionary`)
-* **Feature:** An A-to-Z index of complex technical jargon translated into simple, everyday English. Includes a client-side search UI and alphabet quick-jump links.
+* **Feature:** An A-to-Z index of complex technical jargon translated into simple, everyday English.
 
 ### 5. News Explained (`/news`)
 * **Feature:** We don't publish "breaking news." We decode complex security events.
@@ -40,19 +45,38 @@ The platform is structured around five main pillars, all of which are fully impl
 
 ### 6. The Cyber Toolbox (`/tools`)
 * **Feature:** Free, secure client-side interactive tools.
-* **Implemented Tools:**
-  * **Secure Password Generator:** A React island using `window.crypto` to generate mathematically strong passwords entirely inside the browser.
-  * **URL Decoder:** Analyzes and unscrambles malformed or encoded links to reveal the "True Destination" to prevent phishing.
+* **Implemented Tools:** 
+  * **Secure Password Generator:** Generate mathematically strong passwords using `window.crypto`.
+  * **URL Decoder:** Analyzes malformed links to reveal the "True Destination."
+  * **Password Breach Checker:** Uses secure `k-Anonymity` to check for leaked passwords.
+  * **Secure Hash Generator:** Computes SHA-256 and SHA-512 cryptographic hashes.
+  * **Base64 Encoder/Decoder:** Safely encode and decode strings.
+  * **JWT Decoder:** Analyze JSON Web Tokens without transmitting sensitive payload claims.
+
+### 7. Curated Resources (`/resources`)
+* **Feature:** A directory of trusted external organizations, government agencies, and community databases.
+* **Purpose:** Provides a safe, vetted list of external links (like CISA or HaveIBeenPwned) so users don't have to rely on Google search results where scammers buy fake ads.
+
+### 8. Global Search Engine (Pagefind)
+* **Feature:** A highly optimized, strictly client-side search engine integrated into the main navigation header.
+* **Purpose:** Allows users to perform instant, fuzzy searches across the entire dictionary, scam database, and educational hubs without relying on a slow backend server.
+
+### 9. Interactive Quizzes & MDX Support (Phase 3)
+* **Feature:** The content engine has been upgraded to support `.mdx` files. This allows you to write standard Markdown while safely embedding interactive React components directly into the text.
+* **Purpose:** Gamifies the learning experience. Editors can drop the `<KnowledgeCheck />` component at the bottom of any `.mdx` file to test users on the material they just read.
+
+### 10. Learning Progress Tracking (Phase 3)
+* **Feature:** A purely client-side progress tracking engine utilizing `localStorage`. 
+* **Purpose:** Gamifies the educational roadmaps. Users can click a "Mark Complete" button at the bottom of any guide. Their progress is then visually tracked via an animated progress bar on the Guided Roadmap landing pages, encouraging them to finish the curriculum without requiring them to create a user account.
 
 ---
 
 ## 🛠️ Tech Stack
 
-This site is built for maximum speed, security, and SEO:
-* **Framework:** [Astro](https://astro.build/) (Static Site Generation)
+* **Framework:** [Astro](https://astro.build/) (Static Site Generation with Content Collections v7 and MDX integration)
 * **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) + Tailwind Typography 
 * **Interactive UI:** [React](https://react.dev/) (For client-side "Islands")
-* **Testing:** [Vitest](https://vitest.dev/) + React Testing Library 
+* **Testing:** [Vitest](https://vitest.dev/) + React Testing Library (Verified at **99.18% test coverage**)
 * **Hosting:** GitHub Pages (Automated via GitHub Actions)
 
 ---
@@ -61,19 +85,20 @@ This site is built for maximum speed, security, and SEO:
 
 ```text
 /
-├── .github/workflows/   # CI/CD pipelines (Auto-deploys to GitHub pages)
-├── public/              # Static assets (images, PDFs, fonts)
+├── .github/workflows/   # CI/CD pipelines
+├── public/              # Static assets (images, PDFs)
 ├── src/
-│   ├── components/      # React components (Must have accompanying .test.tsx files)
+│   ├── components/      # React components (with .test.tsx files)
+│   ├── content/         # ⚠️ ALL MARKDOWN CONTENT GOES HERE
+│   │   ├── dictionary/
+│   │   ├── learn/
+│   │   ├── news/
+│   │   └── scams/
 │   ├── layouts/         # Page wrappers (Layout.astro, MarkdownLayout.astro)
-│   ├── styles/          # Global CSS and Tailwind imports
-│   └── pages/           # File-based routing
-│       ├── index.astro       # The Homepage
-│       ├── dictionary/       # Dictionary index & markdown terms
-│       ├── learn/            # Zero to Hero curriculum index & modules
-│       ├── news/             # News index & decoded news articles
-│       ├── scams/            # Scam alerts index & markdown teardowns
-│       └── tools/            # Toolbox index & interactive utilities
+│   └── pages/           # Astro Routing
+│       ├── [pillar]/[slug].astro  # Dynamic content renderers
+│       └── ...                    # Static index pages
+├── src/content.config.ts # Zod schemas for the Content Collections
 └── vitest.config.ts     # Strict test coverage configurations
 ```
 
@@ -81,24 +106,45 @@ This site is built for maximum speed, security, and SEO:
 
 ## ✍️ Content Authoring Guidelines
 
-The site uses a **Markdown-First** architecture. To publish content, create a new `.md` file in the appropriate folder. 
+To publish content, create a new `.md` file inside the appropriate `src/content/` subfolder.
 
-**Mandatory Markdown Layout Template:**
-Paste this `frontmatter` at the top of every new `.md` file:
+**Mandatory Frontmatter (Metadata):**
+Because we use strict Content Collections, your markdown file MUST start with this frontmatter (do NOT include a `layout` tag):
+
 ```markdown
 ---
-layout: ../../layouts/MarkdownLayout.astro
 title: Your Article Title
 category: [Scam Alert | Dictionary Term | Guide | News Explained]
-date: 2026-08-07
-description: A short 1-2 sentence summary for Google Search.
+description: A short 1-2 sentence summary for Google Search and index cards.
+audience: ['parent', 'student', 'business', 'employee', 'senior', 'it'] # Add any relevant personas here
+author: 'John Doe'
+reviewer: 'Jane Smith, CISSP'
+version: '1.0'
 ---
 ```
+*(Note: Some collections require extra fields. E.g., `src/content/scams/` requires a `severity: [Low | Medium | High | Critical]` field. Check `src/content.config.ts` for exact schemas).*
 
 ### Content Templates by Pillar
 To maintain consistency, writers and AI agents MUST follow these structures for the body content:
 
-**For "News Explained" (`/src/pages/news/`)**
+**For Interactive Guides (`src/content/learn/*.mdx`)**
+You can embed quizzes at the bottom of guides to reinforce learning:
+```mdx
+## Your markdown content here...
+
+import KnowledgeCheck from '../../components/KnowledgeCheck.tsx';
+
+<KnowledgeCheck client:load questions={[
+  {
+    question: "Your question here?",
+    options: ["Wrong Answer", "Correct Answer", "Wrong Answer"],
+    correctAnswerIndex: 1,
+    explanation: "Here is why this is the correct answer."
+  }
+]} />
+```
+
+**For "News Explained" (`src/content/news/`)**
 ```markdown
 ## 1. What happened?
 [Brief 3-sentence summary of the event]
@@ -110,7 +156,7 @@ To maintain consistency, writers and AI agents MUST follow these structures for 
 [Bulleted list of immediate, actionable steps]
 ```
 
-**For "Scam Alerts" (`/src/pages/scams/`)**
+**For "Scam Alerts" (`src/content/scams/`)**
 ```markdown
 ## What is it?
 [Brief definition of the scam]
@@ -121,38 +167,28 @@ To maintain consistency, writers and AI agents MUST follow these structures for 
 ## How to avoid it
 [Preventative measures]
 ## What to do if you are affected
-[Recovery steps, e.g., freeze card, report to FTC]
+[Recovery steps]
 ```
 
-**For "Cyber Dictionary" (`/src/pages/dictionary/`)**
+**For "Curated Resources" (`src/content/resources/`)**
+*Note: The frontmatter for resources must include `url` and `type: [Government | Framework | Community | Corporate]`.*
 ```markdown
-## The Short Version
-[A 1-2 sentence plain-English definition]
-## The Everyday Analogy
-[Compare the tech concept to a real-world physical concept, e.g., a firewall is like a bouncer at a club]
-## Why it matters
-[Why the average person should care about this term]
+## Overview
+[What is this organization or website?]
+## Why It Matters
+[Why a layman or business owner should care about this resource]
+## Popular Resources
+[Bulleted list of their top tools or documents]
 ```
 
 ---
 
-## 💻 Local Development & Testing Commands
+## 💻 Local Development Commands
 
 | Command | Action |
 | :--- | :--- |
-| `npm install` | Installs project dependencies. |
-| `npm run dev` | Starts the local development server at `localhost:4321`. |
-| `npm run build` | Builds the production static site into the `./dist/` folder. |
-| `npm run preview` | Previews your production build locally. |
+| `npm install` | Installs dependencies. |
+| `npm run dev` | Starts local dev server at `localhost:4321`. |
+| `npm run build` | Builds production site to `./dist/`. |
 | `npm run test` | Runs the Vitest unit testing suite. |
 | `npm run test:coverage` | Runs tests and verifies the >95% code coverage mandate. |
-
----
-
-## ☁️ Deployment
-
-This project uses **GitHub Actions** for Continuous Deployment. Every time you push to the `main` branch, the `deploy.yml` workflow automatically:
-1. Installs dependencies.
-2. Runs the Vitest suite (the build will **fail and block deployment** if tests fail).
-3. Builds the Astro static site.
-4. Publishes to **GitHub Pages**.

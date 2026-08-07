@@ -1,27 +1,192 @@
 ---
 import Layout from './Layout.astro';
+import { getCollection } from 'astro:content';
+import ProgressTracker from '../components/ProgressTracker';
 
-const { frontmatter } = Astro.props;
+const { frontmatter, url } = Astro.props;
+
+// Safely extract path segments. In Astro, `url` passed down might be a full URL object or a string depending on context.
+// Fallback to Astro.url.pathname if available.
+const rawPathname = typeof url === 'object' && url.pathname ? url.pathname : (typeof url === 'string' ? url : '');
+const pathSegments = rawPathname.split('/').filter(Boolean);
+
+let pillarName = 'Home';
+let pillarUrl = '/';
+
+if (pathSegments[0] === 'learn') { pillarName = 'Learn Cyber'; pillarUrl = '/learn'; }
+else if (pathSegments[0] === 'scams') { pillarName = 'Scam Alerts'; pillarUrl = '/scams'; }
+else if (pathSegments[0] === 'dictionary') { pillarName = 'Cyber Dictionary'; pillarUrl = '/dictionary'; }
+else if (pathSegments[0] === 'news') { pillarName = 'News Explained'; pillarUrl = '/news'; }
+else if (pathSegments[0] === 'resources') { pillarName = 'Curated Resources'; pillarUrl = '/resources'; }
+
+const hasBreadcrumb = pathSegments.length > 0;
+
+// Feature 17: SEO JSON-LD Schemas
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": frontmatter.title,
+  "description": frontmatter.description,
+  "datePublished": frontmatter.date || new Date().toISOString(),
+  "dateModified": frontmatter.lastUpdated || frontmatter.date || new Date().toISOString(),
+  "author": [{
+      "@type": "Organization",
+      "name": "TheCyberNews",
+      "url": "https://thecybernews.org"
+  }]
+};
+
+const breadcrumbSchema = hasBreadcrumb ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://thecybernews.org"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": pillarName,
+      "item": `https://thecybernews.org${pillarUrl}`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": frontmatter.title
+    }
+  ]
+} : null;
+
+// Feature 13: Internal Linking Engine (Fetch related dictionary terms)
+let relatedTerms: any[] = [];
+if (frontmatter.relatedTopics && frontmatter.relatedTopics.length > 0) {
+  const allDictionary = await getCollection('dictionary');
+  relatedTerms = allDictionary.filter(term => frontmatter.relatedTopics.includes(term.id));
+}
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description || "Cybersecurity guide by TheCyberNews"}>
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-    <div class="mb-8">
-      {frontmatter.category && (
-        <span class="text-blue-600 font-semibold tracking-wider uppercase text-sm mb-2 block">
-          {frontmatter.category}
-        </span>
-      )}
-      <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
-        {frontmatter.title}
-      </h1>
-      {frontmatter.date && (
-        <p class="text-slate-500 text-sm">Last updated: {new Date(frontmatter.date).toLocaleDateString()}</p>
-      )}
-    </div>
+  {/* Inject JSON-LD directly into the DOM */}
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  {hasBreadcrumb && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
     
-    <article class="prose prose-slate prose-lg lg:prose-xl max-w-none prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-img:rounded-xl prose-img:shadow-md">
-      <slot />
-    </article>
+    {/* Feature 14: Breadcrumb Navigation */}
+    {hasBreadcrumb && (
+      <nav class="flex text-sm text-slate-500 mb-8 font-medium" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+          <li class="inline-flex items-center">
+            <a href="/" class="hover:text-blue-600 flex items-center">
+              <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+              </svg>
+              Home
+            </a>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <a href={pillarUrl} class="ml-1 md:ml-2 hover:text-blue-600">{pillarName}</a>
+            </div>
+          </li>
+          <li aria-current="page">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="ml-1 md:ml-2 text-slate-800 line-clamp-1 max-w-[200px] md:max-w-xs">{frontmatter.title}</span>
+            </div>
+          </li>
+        </ol>
+      </nav>
+    )}
+
+    <div class="flex flex-col lg:flex-row gap-12">
+      
+      {/* Main Article Content */}
+      <div class="flex-grow max-w-4xl">
+        <div class="mb-8">
+          {frontmatter.category && (
+            <span class="text-blue-600 font-semibold tracking-wider uppercase text-sm mb-2 block">
+              {frontmatter.category}
+            </span>
+          )}
+          <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
+            {frontmatter.title}
+          </h1>
+          
+          {/* Feature 19: Content Review System Trust Badge */}
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-wrap items-center gap-4 text-sm text-slate-600 mb-8">
+            {frontmatter.author && (
+              <div class="flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                </svg>
+                Author: <span class="font-medium text-slate-900 ml-1">{frontmatter.author}</span>
+              </div>
+            )}
+            {frontmatter.reviewer && (
+              <div class="flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6.267 3.441A11 11 0 0112 2c2.65 0 5.122.923 7.042 2.47a.75.75 0 01.12 1.05l-8.5 10a.75.75 0 01-1.127.02l-4-4.5a.75.75 0 011.13-1.004l3.415 3.842 7.747-9.115A9.489 9.489 0 0012 3.5a9.5 9.5 0 00-6.732 2.65.75.75 0 01-1.001-1.07V3.441z" clip-rule="evenodd" />
+                  <path d="M4 14a1 1 0 011-1h5a1 1 0 110 2H5a1 1 0 01-1-1z" />
+                </svg>
+                Reviewed by: <span class="font-medium text-slate-900 ml-1">{frontmatter.reviewer}</span>
+              </div>
+            )}
+            <div class="flex items-center">
+              <svg class="w-4 h-4 mr-1.5 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+              </svg>
+              Updated: <span class="font-medium text-slate-900 ml-1">{frontmatter.lastUpdated || frontmatter.date ? new Date(frontmatter.lastUpdated || frontmatter.date).toLocaleDateString() : 'Recently'}</span>
+            </div>
+            {frontmatter.version && (
+              <div class="flex items-center ml-auto">
+                <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-0.5 rounded">v{frontmatter.version}</span>
+              </div>
+            )}
+          </div>
+        </div>
+        
+        <article class="prose prose-slate prose-lg max-w-none prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-img:rounded-xl prose-img:shadow-md">
+          <slot />
+        </article>
+
+        {/* Phase 3: Learning Progress Tracker */}
+        {pathSegments[0] === 'learn' && (
+          <ProgressTracker client:load articleId={frontmatter.slug || pathSegments[pathSegments.length - 1]} />
+        )}
+      </div>
+
+      {/* Feature 13/18: Dynamic Sidebar for Related Terms */}
+      {relatedTerms.length > 0 && (
+        <aside class="w-full lg:w-80 flex-shrink-0">
+          <div class="sticky top-8 bg-slate-50 border border-slate-200 rounded-2xl p-6">
+            <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center">
+              <svg class="w-5 h-5 mr-2 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+              Key Terms to Know
+            </h3>
+            <div class="space-y-4">
+              {relatedTerms.map((term: any) => (
+                <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+                  <h4 class="font-bold text-slate-900 mb-1 text-sm">{term.data.title}</h4>
+                  <p class="text-slate-600 text-xs mb-3 line-clamp-3">{term.data.description}</p>
+                  <a href={`/dictionary/${term.id}`} class="text-emerald-600 font-semibold text-xs hover:text-emerald-700">Read Definition &rarr;</a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </aside>
+      )}
+
+    </div>
   </div>
 </Layout>

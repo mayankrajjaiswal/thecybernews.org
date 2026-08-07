@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export function getStaticPaths() {
+  const personas = [
+    { slug: 'parent', title: 'Parents & Guardians', desc: 'Protecting your family in the digital age.' },
+    { slug: 'senior', title: 'Senior Citizens', desc: 'Practical advice for staying safe from fraud.' },
+    { slug: 'student', title: 'Students', desc: 'Securing your digital life on and off campus.' },
+    { slug: 'employee', title: 'Employees', desc: 'Workplace cyber hygiene and remote safety.' },
+    { slug: 'business', title: 'Business Owners', desc: 'Protecting your company data and assets.' },
+    { slug: 'it', title: 'IT Professionals', desc: 'Technical resources and awareness materials.' },
+  ];
+  return personas.map(p => ({
+    params: { slug: p.slug },
+    props: { persona: p },
+  }));
+}
+
+const { persona } = Astro.props;
+
+// Fetch all learn guides and scam alerts
+const allLearn = await getCollection('learn');
+const allScams = await getCollection('scams');
+
+// Filter content specifically tagged for this audience in their frontmatter
+// We fallback to showing some general content if nothing is tagged yet, just to avoid an empty page
+const audienceGuides = allLearn.filter(doc => doc.data.audience?.includes(persona.slug));
+const displayGuides = audienceGuides.length > 0 ? audienceGuides : allLearn.slice(0, 3);
+
+const audienceScams = allScams.filter(doc => doc.data.audience?.includes(persona.slug));
+const displayScams = audienceScams.length > 0 ? audienceScams : allScams.slice(0, 2);
+---
+
+<Layout title={`Cybersecurity for ${persona.title}`} description={persona.desc}>
+  <div class="bg-blue-900 py-16 border-b border-blue-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-blue-300 font-bold uppercase tracking-wider text-sm mb-4 block">Audience Hub</span>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+        {persona.title}
+      </h1>
+      <p class="text-xl text-blue-100 max-w-2xl mx-auto">
+        {persona.desc}
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="mb-16">
+      <h2 class="text-2xl font-bold text-slate-900 mb-6 border-b border-slate-200 pb-2">Recommended Guides</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {displayGuides.map(guide => (
+          <a href={`/learn/${guide.id}`} class="block bg-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-300 hover:shadow-sm transition-all group">
+            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{guide.data.title}</h3>
+            <p class="text-slate-600 text-sm line-clamp-2">{guide.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-2xl font-bold text-slate-900 mb-6 border-b border-slate-200 pb-2">Scams Targeting You</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {displayScams.map(scam => (
+          <a href={`/scams/${scam.id}`} class="block bg-red-50 rounded-xl p-5 border border-red-100 hover:border-red-300 hover:shadow-sm transition-all group">
+            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-red-700 transition-colors">{scam.data.title}</h3>
+            <p class="text-slate-700 text-sm line-clamp-2">{scam.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>

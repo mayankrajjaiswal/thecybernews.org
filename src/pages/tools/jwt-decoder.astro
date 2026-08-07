@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import JwtDecoder from '../../components/JwtDecoder';
+---
+
+<Layout title="JWT Decoder" description="Safely decode JSON Web Tokens (JWT) directly in your browser without sending secrets to a server.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        JWT Decoder
+      </h1>
+      <p class="text-lg md:text-xl text-indigo-800 max-w-2xl mx-auto">
+        Analyze JSON Web Tokens (JWT) purely client-side. The token never leaves your device.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <JwtDecoder client:load />
+
+    <div class="mt-16 prose prose-slate max-w-none">
+      <h2>What is a JWT?</h2>
+      <p>
+        A <strong>JSON Web Token (JWT)</strong> is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.
+      </p>
+      
+      <h3>The Three Parts of a JWT</h3>
+      <p>A JWT is logically separated by two dots (<code>.</code>) into three distinct parts:</p>
+      <ol>
+        <li><strong>Header:</strong> Typically consists of two parts: the type of the token (JWT) and the signing algorithm being used (e.g., HMAC SHA256 or RSA).</li>
+        <li><strong>Payload (Claims):</strong> Contains the claims. Claims are statements about an entity (typically, the user) and additional data (e.g., user ID, expiration time, issuer).</li>
+        <li><strong>Signature:</strong> Used to verify the message wasn't changed along the way. To create the signature part, you have to take the encoded header, the encoded payload, a secret, and sign it using the algorithm specified in the header.</li>
+      </ol>
+
+      <h3>Security Warning</h3>
+      <p>
+        <strong>Never put sensitive information inside a JWT payload.</strong> The Header and Payload are merely <em>Base64Url encoded</em>, not encrypted! As you can see using this tool, anyone who captures your JWT can instantly read everything inside the payload (like an email address or internal user ID). The signature only proves the data wasn't <em>tampered with</em>, it does not hide the data.
+      </p>
+    </div>
+  </div>
+</Layout>

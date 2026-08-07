@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'posters' }, props: { title: 'Cybersecurity Posters', size: '3.4 MB PDF' } },
+    { params: { slug: 'training' }, props: { title: 'Internal Training Materials', size: '1.2 MB PDF' } },
+  ];
+}
+
+const { title, size } = Astro.props;
+---
+
+<Layout title={title} description={`Download ${title}`}>
+  <div class="min-h-[60vh] flex flex-col items-center justify-center bg-slate-50 px-4 text-center">
+    <div class="w-20 h-20 bg-slate-200 text-slate-400 rounded-2xl flex items-center justify-center mb-6">
+      <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+      </svg>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">{title}</h1>
+    <p class="text-lg text-slate-600 mb-8">({size})</p>
+    
+    <div class="bg-blue-50 border border-blue-200 p-6 rounded-xl max-w-lg shadow-sm">
+      <h2 class="text-blue-900 font-bold text-xl mb-2">Check Back Soon</h2>
+      <p class="text-blue-800 font-medium">
+        This resource is currently being designed and verified by our editorial team. The high-resolution PDF download will be available shortly.
+      </p>
+    </div>
+    
+    <a href="/downloads" class="mt-8 text-blue-600 font-bold hover:text-blue-800 transition-colors">&larr; Back to Downloads Hub</a>
+  </div>
+</Layout>

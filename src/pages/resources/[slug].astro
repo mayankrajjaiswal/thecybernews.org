@@ -1,0 +1,53 @@
+---
+import { getCollection, render } from 'astro:content';
+import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+
+export async function getStaticPaths() {
+  const allResources = await getCollection('resources');
+  return allResources.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Fetch other resources to link at the bottom
+const allResources = await getCollection('resources');
+const otherResources = allResources.filter(doc => doc.id !== entry.id).slice(0, 3);
+---
+
+<MarkdownLayout frontmatter={entry.data} url={Astro.url}>
+  
+  <div class="not-prose mb-8 p-6 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between flex-wrap gap-4">
+    <div>
+      <span class="text-sm font-semibold text-slate-500 uppercase tracking-wider block mb-1">Official Website</span>
+      <a href={entry.data.url} target="_blank" rel="noopener noreferrer" class="text-blue-600 font-bold hover:underline flex items-center">
+        {entry.data.url}
+        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+    </div>
+    <a href={entry.data.url} target="_blank" rel="noopener noreferrer" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-6 rounded-lg transition-colors">
+      Visit Resource
+    </a>
+  </div>
+
+  <Content />
+
+  {/* Feature 18: Related Content Blocks */}
+  <div class="mt-16 pt-8 border-t border-slate-200 not-prose">
+    <h3 class="text-2xl font-bold text-slate-900 mb-6">Explore Other Resources</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {otherResources.map(res => (
+        <a href={`/resources/${res.id}`} class="block bg-slate-50 rounded-xl p-5 border border-slate-200 hover:border-blue-300 hover:shadow-sm transition-all group">
+          <span class="text-xs font-bold text-blue-600 uppercase tracking-wider mb-2 block">{res.data.type}</span>
+          <h4 class="font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{res.data.title}</h4>
+          <p class="text-sm text-slate-600 line-clamp-2">{res.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</MarkdownLayout>

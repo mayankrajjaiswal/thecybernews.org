@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Base64Tool from '../../components/Base64Tool';
+---
+
+<Layout title="Base64 Encoder & Decoder" description="Easily and securely encode text to Base64 or decode Base64 back to plain text entirely in your browser.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Base64 Encoder & Decoder
+      </h1>
+      <p class="text-lg md:text-xl text-indigo-800 max-w-2xl mx-auto">
+        A fast, purely client-side utility for software developers and analysts. Your data never leaves your browser.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <Base64Tool client:load />
+
+    <div class="mt-16 prose prose-slate max-w-none">
+      <h2>What is Base64?</h2>
+      <p>
+        Base64 is an encoding scheme used to convert binary data (like images or complex documents) into an ASCII string format. It translates the data into a radix-64 representation. 
+      </p>
+      <p>
+        It is commonly used on the World Wide Web for transferring data over protocols that are designed to deal primarily with text-based data (like embedding image data directly into CSS or HTML files, or encoding email attachments).
+      </p>
+      
+      <h3>Is Base64 Encryption?</h3>
+      <p>
+        <strong>No.</strong> Base64 is strictly an <em>encoding</em> format, not an encryption format. There is no mathematical key required to reverse it. Anyone who intercepts a Base64 string can instantly decode it back to plain text. You should never use Base64 to "hide" or secure passwords, API keys, or sensitive information.
+      </p>
+    </div>
+  </div>
+</Layout>

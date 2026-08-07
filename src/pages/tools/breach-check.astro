@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BreachCheck from '../../components/BreachCheck';
+---
+
+<Layout title="Password Breach Check" description="Check if your password has been exposed in past data breaches securely.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Password Breach Check
+      </h1>
+      <p class="text-lg md:text-xl text-indigo-800 max-w-2xl mx-auto">
+        Safely check if your password was leaked on the Dark Web using the official Have I Been Pwned database.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <BreachCheck client:load />
+
+    <div class="mt-16 prose prose-slate max-w-none">
+      <h2>Is this safe to use?</h2>
+      <p>
+        <strong>Yes. We never see your password.</strong> It never leaves your browser, and it is never sent to our servers.
+      </p>
+      
+      <h3>How does it work? (The k-Anonymity model)</h3>
+      <ol>
+        <li>When you type your password, your web browser mathematically scrambles it into a 40-character "hash" (e.g., <code>5BAA61E4C9B...</code>).</li>
+        <li>Your browser then splits that hash and takes <strong>only the first 5 characters</strong> (e.g., <code>5BAA6</code>).</li>
+        <li>It sends <em>only those 5 characters</em> to the official <a href="https://haveibeenpwned.com/" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a> API.</li>
+        <li>The database sends back a massive list of hundreds of broken passwords that happen to start with those same 5 characters.</li>
+        <li>Your browser checks if the rest of your scrambled hash is anywhere on that list. If it is, your password was breached.</li>
+      </ol>
+      <p>
+        Because we only ever transmit 5 characters of a scrambled code, it is mathematically impossible for anyone—even us—to figure out what password you typed.
+      </p>
+
+      <h3>What if my password is breached?</h3>
+      <p>
+        If the tool says "Pwned", you must <strong>stop using that password immediately.</strong> Hackers use automated bots to test lists of breached passwords across thousands of websites every second. Head over to our <a href="/tools/password-generator">Secure Password Generator</a> to create a new, safe password.
+      </p>
+    </div>
+  </div>
+</Layout>

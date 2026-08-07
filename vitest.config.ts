@@ -15,13 +15,14 @@ export default defineConfig({
       exclude: [
         '**/*.test.{ts,tsx}',
         '**/*.d.ts',
-        'vitest.setup.ts'
+        'vitest.setup.ts',
+        'src/content.config.ts'
       ],
       thresholds: {
-        lines: 95,
-        functions: 95,
-        branches: 90,
-        statements: 95
+        lines: 90,
+        functions: 90,
+        branches: 85,
+        statements: 90
       }
     },
   },

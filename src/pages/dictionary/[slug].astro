@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from 'astro:content';
+import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+
+export async function getStaticPaths() {
+  const allTerms = await getCollection('dictionary');
+  return allTerms.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Feature 13 / 18: Link other dictionary terms
+const allTerms = await getCollection('dictionary');
+const otherTerms = allTerms.filter(doc => doc.id !== entry.id).slice(0, 3);
+---
+
+<MarkdownLayout frontmatter={entry.data} url={Astro.url}>
+  <Content />
+
+  <div class="mt-16 pt-8 border-t border-slate-200 not-prose">
+    <h3 class="text-2xl font-bold text-slate-900 mb-6">Other Dictionary Terms</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {otherTerms.map(term => (
+        <a href={`/dictionary/${term.id}`} class="block bg-slate-50 rounded-xl p-5 border border-slate-200 hover:border-emerald-300 hover:shadow-sm transition-all group">
+          <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider mb-2 block">{term.data.category}</span>
+          <h4 class="font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{term.data.title}</h4>
+          <p class="text-sm text-slate-600 line-clamp-2">{term.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</MarkdownLayout>

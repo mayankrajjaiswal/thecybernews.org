@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import RegexTester from '../../components/RegexTester';
+---
+
+<Layout title="Regex Tester" description="Securely test regular expressions against private logs or text directly in your browser.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Regex Tester & Visualizer
+      </h1>
+      <p class="text-lg md:text-xl text-indigo-800 max-w-2xl mx-auto">
+        Test regular expressions against sensitive logs or text strings purely client-side. Your data is never sent to a server.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <RegexTester client:load />
+
+    <div class="mt-16 prose prose-slate max-w-none">
+      <h2>Why use a client-side Regex Tester?</h2>
+      <p>
+        Regular expressions are frequently used by cybersecurity analysts and system administrators to parse through massive server logs, searching for specific patterns like IP addresses, email formats, or credit card numbers.
+      </p>
+      <p>
+        The danger of using popular online Regex testing tools is that many of them transmit your "Test String" back to their servers to process the matches. If you are pasting proprietary server logs, customer data, or internal API keys to test your regex, you are inadvertently leaking sensitive corporate data to a third party.
+      </p>
+      <p>
+        This tool uses your web browser's built-in JavaScript engine to process the Regular Expressions entirely locally. You can safely paste highly classified log files into the Test String box knowing that the text will never leave your physical computer.
+      </p>
+    </div>
+  </div>
+</Layout>
