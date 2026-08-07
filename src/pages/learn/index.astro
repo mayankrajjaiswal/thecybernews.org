@@ -45,8 +45,21 @@ const levels = [
     </div>
   </div>
 
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="space-y-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="mb-16">
+      <h2 class="text-3xl font-bold text-slate-900 mb-8 text-center">Explore by Topic Hub</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {['Identity Security', 'Network Security', 'Digital Privacy', 'Family Safety', 'Threat Defense', 'Workplace Security'].map(hub => (
+          <a href={`/learn/hub/${hub.toLowerCase().replace(/\s+/g, '-')}`} class="bg-white border border-slate-200 rounded-xl p-6 text-center shadow-sm hover:border-blue-400 hover:shadow-md hover:-translate-y-1 transition-all group">
+            <span class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors">{hub}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+    
+    <div class="border-t border-slate-200 pt-16">
+      <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center">The Structured Path</h2>
+      <div class="space-y-16">
       {levels.map((level, index) => (
         <div class="relative">
           {/* Connector line for the timeline effect */}
@@ -91,6 +104,7 @@ const levels = [
           </div>
         </div>
       ))}
+      </div>
     </div>
   </div>
 </Layout>

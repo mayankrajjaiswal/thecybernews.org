@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from 'astro:content';
+import MarkdownLayout from '../../layouts/MarkdownLayout.astro';
+
+export async function getStaticPaths() {
+  const allScams = await getCollection('scams');
+  return allScams.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+// Feature 13 / 18: Link other scams
+const allScams = await getCollection('scams');
+const otherScams = allScams.filter(doc => doc.id !== entry.id).slice(0, 3);
+---
+
+<MarkdownLayout frontmatter={entry.data}>
+  <Content />
+
+  <div class="mt-16 pt-8 border-t border-slate-200 not-prose">
+    <h3 class="text-2xl font-bold text-slate-900 mb-6 font-sans">Other Active Scam Alerts</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {otherScams.map(scam => (
+        <a href={`/scams/${scam.id}`} class="block bg-slate-50 rounded-xl p-5 border border-slate-200 hover:border-red-300 hover:shadow-sm transition-all group">
+          <span class="text-xs font-bold text-red-600 uppercase tracking-wider mb-2 block">{scam.data.category}</span>
+          <h4 class="font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{scam.data.title}</h4>
+          <p class="text-sm text-slate-600 line-clamp-2">{scam.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</MarkdownLayout>
