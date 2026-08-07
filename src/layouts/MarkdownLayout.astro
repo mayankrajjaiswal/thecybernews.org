@@ -18,9 +18,52 @@ else if (pathSegments[0] === 'news') { pillarName = 'News Explained'; pillarUrl 
 else if (pathSegments[0] === 'resources') { pillarName = 'Curated Resources'; pillarUrl = '/resources'; }
 
 const hasBreadcrumb = pathSegments.length > 0;
+
+// Feature 17: SEO JSON-LD Schemas
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": frontmatter.title,
+  "description": frontmatter.description,
+  "datePublished": frontmatter.date || new Date().toISOString(),
+  "dateModified": frontmatter.lastUpdated || frontmatter.date || new Date().toISOString(),
+  "author": [{
+      "@type": "Organization",
+      "name": "TheCyberNews",
+      "url": "https://thecybernews.org"
+  }]
+};
+
+const breadcrumbSchema = hasBreadcrumb ? {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://thecybernews.org"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": pillarName,
+      "item": `https://thecybernews.org${pillarUrl}`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": frontmatter.title
+    }
+  ]
+} : null;
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description || "Cybersecurity guide by TheCyberNews"}>
+  {/* Inject JSON-LD directly into the DOM */}
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  {hasBreadcrumb && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
+
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
     
     {/* Feature 14: Breadcrumb Navigation */}

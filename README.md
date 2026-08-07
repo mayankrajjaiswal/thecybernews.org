@@ -41,17 +41,22 @@ The platform is structured around six main interconnected pillars:
 
 ### 6. The Cyber Toolbox (`/tools`)
 * **Feature:** Free, secure client-side interactive tools.
-* **Implemented Tools:** Secure Password Generator, URL Decoder, and Password Breach Checker (utilizing secure `k-Anonymity`).
+* **Implemented Tools:** 
+  * **Secure Password Generator:** Generate mathematically strong passwords using `window.crypto`.
+  * **URL Decoder:** Analyzes malformed links to reveal the "True Destination."
+  * **Password Breach Checker:** Uses secure `k-Anonymity` to check for leaked passwords.
+  * **Secure Hash Generator:** Computes SHA-256 and SHA-512 cryptographic hashes.
+  * **Base64 Encoder/Decoder:** Safely encode and decode strings.
+  * **JWT Decoder:** Analyze JSON Web Tokens without transmitting sensitive payload claims.
 
 ### 7. Curated Resources (`/resources`)
 * **Feature:** A directory of trusted external organizations, government agencies, and community databases.
 * **Purpose:** Provides a safe, vetted list of external links (like CISA or HaveIBeenPwned) so users don't have to rely on Google search results where scammers buy fake ads.
 
-### 8. Internal Linking Engine
-* **Feature:** Because content is stored in Astro Content Collections, every article automatically generates a "Continue Learning" or "Related Links" section at the bottom, ensuring users never hit a dead end.
-
-### 8. Breadcrumb Navigation
-* **Feature:** Every single article and guide automatically generates SEO-friendly breadcrumb navigation at the top of the page (e.g., `Home > Scam Alerts > WhatsApp Hijacking`), ensuring users never get lost.
+### 8. Internal Linking & SEO Engine
+* **Internal Linking:** Every article automatically generates a "Continue Learning" or "Related Links" section at the bottom, ensuring users never hit a dead end.
+* **Breadcrumb Navigation:** Every single article and guide automatically generates SEO-friendly breadcrumb navigation at the top of the page.
+* **Automated SEO Schemas:** The site automatically generates Canonical URLs, OpenGraph (Facebook) tags, Twitter Cards, and `robots.txt`. Most importantly, it injects structured JSON-LD (`Article` and `BreadcrumbList`) into every Markdown page, ensuring Google indexes the content perfectly for rich search results. An automated XML Sitemap is generated at `sitemap-index.xml`.
 
 ---
 

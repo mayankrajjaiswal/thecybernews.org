@@ -4,9 +4,17 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
+  image?: string;
 }
 
-const { title, description } = Astro.props;
+const { 
+  title, 
+  description,
+  image = '/default-social-card.png' // You will need to add this image to /public later
+} = Astro.props;
+
+// Construct full canonical URL
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://thecybernews.org');
 ---
 
 <!doctype html>
@@ -14,8 +22,24 @@ const { title, description } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title === 'Home' ? 'TheCyberNews | The Practical Cybersecurity Knowledge Platform' : `${title} | TheCyberNews`}</title>
     <meta name="description" content={description} />
-    <title>{title} | TheCyberNews</title>
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${title} | TheCyberNews`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, canonicalURL)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={`${title} | TheCyberNews`} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, canonicalURL)} />
+
     <!-- Add standard favicon later -->
   </head>
   <body class="bg-slate-50 text-slate-900 font-sans antialiased flex flex-col min-h-screen">

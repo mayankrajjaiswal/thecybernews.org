@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HashGenerator from '../../components/HashGenerator';
+---
+
+<Layout title="Secure Hash Generator" description="Generate SHA-256 and SHA-512 hashes purely client-side in your browser.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Secure Hash Generator
+      </h1>
+      <p class="text-lg md:text-xl text-indigo-800 max-w-2xl mx-auto">
+        Instantly compute cryptographic hashes (SHA-256, SHA-512) directly in your browser without sending any data to a server.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <HashGenerator client:load />
+
+    <div class="mt-16 prose prose-slate max-w-none">
+      <h2>What is a Hash?</h2>
+      <p>
+        A cryptographic hash function takes an input of any size (like a password, a sentence, or an entire book) and scrambles it into a fixed-size string of characters, which is usually displayed as a hexadecimal number.
+      </p>
+      
+      <h3>Key Properties of Hashes:</h3>
+      <ul>
+        <li><strong>One-Way:</strong> It is mathematically impossible to reverse a hash to figure out the original input. This is why websites store the <em>hash</em> of your password, not your actual password.</li>
+        <li><strong>Deterministic:</strong> The same input will always produce the exact same hash output.</li>
+        <li><strong>Avalanche Effect:</strong> Changing even a single letter in the input will completely change the entire output hash.</li>
+      </ul>
+      
+      <h3>Why are there different algorithms?</h3>
+      <p>
+        As computers get faster, older hashing algorithms (like MD5 or SHA-1) become mathematically "broken," meaning hackers can figure out ways to create "collisions" (two different inputs resulting in the same hash). Today, <strong>SHA-256</strong> is considered the industry standard for most applications, offering an excellent balance of speed and high security.
+      </p>
+    </div>
+  </div>
+</Layout>
