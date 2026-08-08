@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HttpStatusReference from '../../components/HttpStatusReference';
+---
+
+<Layout title="HTTP Status Codes Reference" description="A quick, searchable reference guide for standard HTTP response status codes.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        HTTP Status Codes
+      </h1>
+      <p class="text-lg md:text-xl text-indigo-800 max-w-2xl mx-auto">
+        A developer cheat sheet for standard HTTP response status codes, organized by class.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <HttpStatusReference client:load />
+
+    <div class="mt-16 prose prose-slate max-w-none">
+      <h2>What are HTTP Status Codes?</h2>
+      <p>
+        When you visit a website, your browser sends a request to the site's server. The server then responds to the browser's request with a three-digit code: an HTTP status code. These codes indicate whether a specific HTTP request has been successfully completed.
+      </p>
+      
+      <h3>The 5 Classes of Status Codes:</h3>
+      <ul>
+        <li><strong>1xx (Informational):</strong> The request was received, continuing process.</li>
+        <li><strong>2xx (Successful):</strong> The request was successfully received, understood, and accepted. (e.g., 200 OK).</li>
+        <li><strong>3xx (Redirection):</strong> Further action needs to be taken in order to complete the request. (e.g., 301 Moved Permanently).</li>
+        <li><strong>4xx (Client Error):</strong> The request contains bad syntax or cannot be fulfilled. This generally means the error is on the user's end. (e.g., 404 Not Found or 403 Forbidden).</li>
+        <li><strong>5xx (Server Error):</strong> The server failed to fulfill an apparently valid request. This generally means the error is on the server's end. (e.g., 500 Internal Server Error).</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

@@ -1,33 +1,59 @@
 ---
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
-export function getStaticPaths() {
-  return [
-    { params: { slug: 'posters' }, props: { title: 'Cybersecurity Posters', size: '3.4 MB PDF' } },
-    { params: { slug: 'training' }, props: { title: 'Internal Training Materials', size: '1.2 MB PDF' } },
-  ];
+export async function getStaticPaths() {
+  const allDownloads = await getCollection('downloads');
+  return allDownloads.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
 }
 
-const { title, size } = Astro.props;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
 ---
 
-<Layout title={title} description={`Download ${title}`}>
-  <div class="min-h-[60vh] flex flex-col items-center justify-center bg-slate-50 px-4 text-center">
-    <div class="w-20 h-20 bg-slate-200 text-slate-400 rounded-2xl flex items-center justify-center mb-6">
-      <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
-      </svg>
+<Layout title={entry.data.title} description={entry.data.description}>
+  {/* The print-hide class ensures UI elements disappear when the user prints the page */}
+  <div class="print:hidden bg-slate-900 py-12 border-b border-slate-950">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <h1 class="text-3xl font-bold text-white mb-2">{entry.data.title}</h1>
+        <p class="text-slate-400 text-sm">{entry.data.description}</p>
+      </div>
+      <button 
+        onclick="window.print()" 
+        class="flex-shrink-0 bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-6 rounded-xl transition-colors shadow-lg flex items-center"
+      >
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+        </svg>
+        Print to PDF
+      </button>
     </div>
-    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">{title}</h1>
-    <p class="text-lg text-slate-600 mb-8">({size})</p>
-    
-    <div class="bg-blue-50 border border-blue-200 p-6 rounded-xl max-w-lg shadow-sm">
-      <h2 class="text-blue-900 font-bold text-xl mb-2">Check Back Soon</h2>
-      <p class="text-blue-800 font-medium">
-        This resource is currently being designed and verified by our editorial team. The high-resolution PDF download will be available shortly.
-      </p>
+  </div>
+
+  {/* Print-optimized container */}
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 print:py-0 print:px-0">
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 md:p-12 print:shadow-none print:border-none print:p-0">
+      
+      {/* Header specifically for the printed document */}
+      <div class="hidden print:block mb-8 border-b-2 border-slate-900 pb-4">
+        <div class="flex justify-between items-end">
+          <h1 class="text-3xl font-black text-slate-900">{entry.data.title}</h1>
+          <span class="text-slate-500 font-bold">TheCyberNews.org</span>
+        </div>
+      </div>
+
+      <article class="prose prose-slate prose-lg max-w-none prose-h2:text-blue-900 prose-h3:text-slate-800 marker:text-blue-600 prose-a:text-blue-600">
+        <Content />
+      </article>
+
+      {/* Footer specifically for the printed document */}
+      <div class="hidden print:block mt-12 border-t-2 border-slate-200 pt-4 text-center text-slate-500 text-sm">
+        Provided by TheCyberNews.org | For educational purposes only.
+      </div>
     </div>
-    
-    <a href="/downloads" class="mt-8 text-blue-600 font-bold hover:text-blue-800 transition-colors">&larr; Back to Downloads Hub</a>
   </div>
 </Layout>
