@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ScamDecisionTree from '../../components/ScamDecisionTree';
+---
+
+<Layout title="Is It a Scam? Decision Tree" description="An interactive flowchart to quickly determine if that suspicious text or phone call is a scam.">
+  <div class="bg-slate-900 py-12 border-b border-indigo-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4">
+        "Is It a Scam?" Flowchart
+      </h1>
+      <p class="text-lg text-slate-400">
+        Are you on the phone with someone suspicious right now? Answer the questions below to instantly figure out if they are a scammer.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-slate-100 min-h-screen">
+    <ScamDecisionTree client:load />
+
+    <div class="max-w-3xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">The Psychology of a Scam</h3>
+      <p class="text-slate-600 mb-4">
+        Almost all modern scams rely on <strong>Social Engineering</strong> rather than technical hacking. Scammers are trained psychologists who use two primary emotions to turn off your critical thinking:
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+          <h4 class="font-bold text-red-900 mb-2">1. Panic / Urgency</h4>
+          <p class="text-red-800 text-sm">
+            "Your bank account is frozen!" or "Your grandson is in jail!" If you feel a sudden spike in adrenaline and feel like you have to act <em>right this second</em>, it is almost certainly a scam.
+          </p>
+        </div>
+        
+        <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg">
+          <h4 class="font-bold text-emerald-900 mb-2">2. Greed / Excitement</h4>
+          <p class="text-emerald-800 text-sm">
+            "You won a free iPhone!" or "This crypto coin is about to double in value!" If something seems too good to be true, it is. 
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <a href="/tools/emergency-wizard" class="inline-flex items-center text-indigo-600 font-bold hover:text-indigo-800 transition-colors">
+          Did you already give them money or passwords? Go to the Emergency Wizard.
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FamilyContractGenerator from '../../components/FamilyContractGenerator';
+---
+
+<Layout title="Family Internet Safety Contract Generator" description="Create a printable agreement with your children about screen time, social media, and digital citizenship.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Family Internet Safety Contract
+      </h1>
+      <p class="text-lg text-indigo-800">
+        Giving a child their first smartphone or tablet is a big deal. Use this tool to generate a clear, printable agreement about screen time, online gaming, and safety.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <FamilyContractGenerator client:load />
+
+    <div class="max-w-4xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">Why use a written contract?</h3>
+      <p class="text-slate-600 mb-4">
+        Kids often don't understand the permanent nature of the internet. A written contract sets clear expectations *before* a problem occurs. It changes the conversation from "You're in trouble because I said so" to "You lost your device privileges because you broke rule #3 that we both agreed to."
+      </p>
+      
+      <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg mt-6">
+        <h4 class="font-bold text-indigo-900 mb-2">Tips for success:</h4>
+        <ul class="space-y-2 text-indigo-800 text-sm">
+          <li>• Print the contract out and have both you and your child physically sign it.</li>
+          <li>• Put it on the fridge or somewhere visible.</li>
+          <li>• Review it every year. As they get older, you can adjust the rules to give them more independence.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Layout>

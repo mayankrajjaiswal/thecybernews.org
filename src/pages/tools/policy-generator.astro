@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PolicyGenerator from '../../components/PolicyGenerator';
+---
+
+<Layout title="Custom Security Policy Generator" description="Generate a custom Acceptable Use and Security Policy for your small business in 60 seconds.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Custom Security Policy Generator
+      </h1>
+      <p class="text-lg text-indigo-800">
+        Small businesses often can't afford lawyers to draft basic cybersecurity rules. Use this tool to instantly generate a clean, readable Acceptable Use Policy for your employees.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <PolicyGenerator client:load />
+
+    <div class="max-w-4xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">Why do I need a Security Policy?</h3>
+      <p class="text-slate-600 mb-4">
+        A cybersecurity policy is the foundation of your company's defense. It removes ambiguity by explicitly telling employees what they are and are not allowed to do with company data and devices.
+      </p>
+      <p class="text-slate-600 mb-4">
+        Without a written policy, it is very difficult to hold employees accountable for risky behavior (like installing unauthorized software or turning off their antivirus). Furthermore, if your company suffers a data breach, having a formal policy in place can help demonstrate to regulators or insurance providers that you took reasonable steps to secure your environment.
+      </p>
+      <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg text-yellow-800 text-sm">
+        <strong>Disclaimer:</strong> This tool generates a basic baseline policy for educational and informational purposes. It does not constitute formal legal advice. For compliance with specific frameworks (like HIPAA or SOC2), please consult with a professional.
+      </div>
+    </div>
+  </div>
+</Layout>

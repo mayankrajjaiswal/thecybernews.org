@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import MimeTypeReference from '../../components/MimeTypeReference';
+---
+
+<Layout title="Dangerous File Extensions (MIME) Reference" description="A searchable database of file extensions color-coded by their danger level.">
+  <div class="bg-slate-900 py-12 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4">
+        Dangerous File Extensions
+      </h1>
+      <p class="text-lg text-slate-400">
+        Before you click on an email attachment, check its file extension (the letters after the dot). Use this database to see if it is safe or a known malware vector.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-slate-100 min-h-screen">
+    <MimeTypeReference client:load />
+
+    <div class="max-w-4xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">The "Hidden Extension" Trick</h3>
+      <p class="text-slate-600 mb-4">
+        By default, Windows hides file extensions for "known file types" to make things look cleaner. Hackers absolutely love this feature.
+      </p>
+      <p class="text-slate-600 mb-6">
+        If a hacker names their virus <code>invoice.pdf.exe</code>, Windows will hide the <code>.exe</code> part. To you, it looks exactly like a harmless file named <code>invoice.pdf</code>. When you double-click it expecting a document, it runs the virus instead.
+      </p>
+      
+      <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg">
+        <h4 class="font-bold text-indigo-900 mb-2">How to show File Extensions in Windows:</h4>
+        <ol class="list-decimal list-inside text-indigo-800 text-sm space-y-2">
+          <li>Open <strong>File Explorer</strong> (Press the Windows Key + E).</li>
+          <li>Click the <strong>View</strong> tab at the top.</li>
+          <li>Check the box next to <strong>File name extensions</strong>.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</Layout>

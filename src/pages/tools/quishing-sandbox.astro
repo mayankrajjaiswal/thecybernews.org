@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import QrCodeScannerSim from '../../components/QrCodeScannerSim';
+---
+
+<Layout title="QR Code Phishing (Quishing) Sandbox" description="Practice scanning physical QR codes and spotting fake URLs before you get hacked.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        QR Code Phishing (Quishing) Sandbox
+      </h1>
+      <p class="text-lg text-indigo-800">
+        Hackers are slapping fake QR code stickers over real ones in public places. Practice inspecting the URL *before* you open it.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <QrCodeScannerSim client:load />
+
+    <div class="max-w-4xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">Why is Quishing so dangerous?</h3>
+      <p class="text-slate-600 mb-4">
+        Traditional phishing relies on sending you an email. Your email provider (like Gmail or Outlook) has massive supercomputers scanning every incoming link to block the bad ones before they reach your inbox.
+      </p>
+      <p class="text-slate-600 mb-6">
+        <strong>A QR code bypasses all security.</strong> It is just a physical sticker in the real world. Your phone's camera app does not have a built-in antivirus to check if the link is safe. It is 100% up to you to spot the fake URL before you click "Open in Safari/Chrome".
+      </p>
+
+      <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg">
+        <h4 class="font-bold text-indigo-900 mb-2">How to protect yourself:</h4>
+        <ul class="space-y-2 text-indigo-800 text-sm">
+          <li>• <strong>Feel the code:</strong> Is it a paper sticker slapped over a permanent metal or plastic sign? Do not scan it.</li>
+          <li>• <strong>Read the URL carefully:</strong> Look for "Homoglyphs" (letters that look similar, like an uppercase 'I' instead of a lowercase 'l').</li>
+          <li>• <strong>Never log in:</strong> If you scan a restaurant menu and it asks you to log into Google or Apple, close it immediately.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Layout>

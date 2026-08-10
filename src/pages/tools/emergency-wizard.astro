@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import EmergencyWizard from '../../components/EmergencyWizard';
+---
+
+<Layout title="Emergency Action Wizard" description="Immediate step-by-step recovery plans if you think you've been hacked or scammed.">
+  <div class="bg-slate-900 py-12 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4">
+        "I've Been Hacked!"
+      </h1>
+      <p class="text-lg text-slate-300">
+        Stop. Don't panic. Use the wizard below to get immediate, prioritized recovery steps based on your specific situation.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-slate-100 min-h-screen">
+    <EmergencyWizard client:load />
+
+    <div class="max-w-3xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">A Note on Tech Support Scams</h3>
+      <p class="text-slate-600 mb-4">
+        If you are currently experiencing a pop-up on your screen that says your computer is locked, infected, or hacked, and it provides a phone number to call—<strong>do not call that number.</strong>
+      </p>
+      <p class="text-slate-600 font-bold text-red-600">
+        Microsoft, Apple, and Google will NEVER put a phone number on your screen and ask you to call them. 
+      </p>
+      <p class="text-slate-600 mt-4">
+        Those pop-ups are designed to cause panic. They are usually just full-screen websites. Pressing <code>ESC</code>, <code>F11</code>, or forcefully restarting your computer usually resolves the issue.
+      </p>
+    </div>
+  </div>
+</Layout>

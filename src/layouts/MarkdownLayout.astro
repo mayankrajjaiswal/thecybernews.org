@@ -2,8 +2,10 @@
 import Layout from './Layout.astro';
 import { getCollection } from 'astro:content';
 import ProgressTracker from '../components/ProgressTracker';
+import BookmarkButton from '../components/BookmarkButton';
 
 const { frontmatter, url } = Astro.props;
+
 
 // Safely extract path segments. In Astro, `url` passed down might be a full URL object or a string depending on context.
 // Fallback to Astro.url.pathname if available.
@@ -112,11 +114,21 @@ if (frontmatter.relatedTopics && frontmatter.relatedTopics.length > 0) {
       {/* Main Article Content */}
       <div class="flex-grow max-w-4xl">
         <div class="mb-8">
-          {frontmatter.category && (
-            <span class="text-blue-600 font-semibold tracking-wider uppercase text-sm mb-2 block">
-              {frontmatter.category}
-            </span>
-          )}
+          <div class="flex justify-between items-start mb-2">
+            {frontmatter.category && (
+              <span class="text-blue-600 font-semibold tracking-wider uppercase text-sm block">
+                {frontmatter.category}
+              </span>
+            )}
+            <BookmarkButton 
+              client:only="react" 
+              id={frontmatter.slug || pathSegments[pathSegments.length - 1] || frontmatter.title.replace(/\s+/g, '-').toLowerCase()}
+              title={frontmatter.title}
+              description={frontmatter.description}
+              url={rawPathname}
+              category={frontmatter.category || 'Article'}
+            />
+          </div>
           <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
             {frontmatter.title}
           </h1>

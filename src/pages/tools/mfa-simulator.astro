@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import MfaSimulator from '../../components/MfaSimulator';
+---
+
+<Layout title="MFA Authenticator Simulator" description="Visually understand how apps like Google Authenticator generate those 6-digit codes.">
+  <div class="bg-slate-900 py-12 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4">
+        Authenticator (MFA) Simulator
+      </h1>
+      <p class="text-lg text-slate-400">
+        It's not magic, it's just math. See exactly how Time-Based One-Time Passwords (TOTP) are generated without ever needing an internet connection.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-slate-100 min-h-screen">
+    <MfaSimulator client:load />
+
+    <div class="max-w-4xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">Why are Apps better than Text Messages?</h3>
+      <p class="text-slate-600 mb-4">
+        Receiving a 6-digit code via SMS text message is better than nothing, but it has a massive flaw: <strong>SIM Swapping</strong>.
+      </p>
+      <p class="text-slate-600 mb-6">
+        A hacker can call your cell phone provider, pretend to be you, and convince the customer support agent to transfer your phone number to the hacker's SIM card. Suddenly, the hacker is receiving all of your bank's text messages.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-6">
+          <h4 class="font-bold text-indigo-900 mb-2">Authenticator Apps (Safe)</h4>
+          <p class="text-indigo-800 text-sm">
+            The "Secret Key" is stored physically on your phone's hard drive. It cannot be intercepted over the air. Even if a hacker clones your phone number, they cannot generate the codes without physically stealing your phone.
+          </p>
+        </div>
+        <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-6">
+          <h4 class="font-bold text-indigo-900 mb-2">Security Keys (Safest)</h4>
+          <p class="text-indigo-800 text-sm">
+            Physical USB keys (like YubiKey) take this a step further. You plug them into your computer and physically tap them to log in. They are entirely immune to phishing because they verify the website's URL before authenticating.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

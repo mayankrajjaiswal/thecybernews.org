@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import RansomwareSimulator from '../../components/RansomwareSimulator';
+---
+
+<Layout title="Ransomware Crisis Simulator" description="A text-based simulation teaching small businesses how to respond to a ransomware attack.">
+  <div class="bg-slate-900 py-12 border-b border-red-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4">
+        Ransomware Crisis Simulator
+      </h1>
+      <p class="text-lg text-slate-400">
+        Experience a cyberattack from the perspective of a small business owner. Can you make the right choices under pressure to save your company?
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-slate-100 min-h-screen">
+    <RansomwareSimulator client:load />
+
+    <div class="max-w-3xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">The Golden Rules of Incident Response</h3>
+      <ul class="space-y-4 text-slate-700">
+        <li class="flex items-start gap-3">
+          <div class="mt-1 bg-red-100 text-red-700 rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm flex-shrink-0">1</div>
+          <p><strong>Containment is priority #1.</strong> Ransomware is designed to spread across a network as fast as possible. The moment you suspect an infection, unplug the machine from the internet and the local network to save the rest of your office.</p>
+        </li>
+        <li class="flex items-start gap-3">
+          <div class="mt-1 bg-red-100 text-red-700 rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm flex-shrink-0">2</div>
+          <p><strong>Do not reboot.</strong> Restarting an infected computer destroys the volatile memory (RAM), destroying crucial forensic evidence that investigators need.</p>
+        </li>
+        <li class="flex items-start gap-3">
+          <div class="mt-1 bg-red-100 text-red-700 rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm flex-shrink-0">3</div>
+          <p><strong>Never pay the ransom.</strong> You are funding organized crime. There is zero guarantee they will give you the decryption key. Often, they take your money and demand a second payment to not leak the data.</p>
+        </li>
+        <li class="flex items-start gap-3">
+          <div class="mt-1 bg-emerald-100 text-emerald-700 rounded-full w-6 h-6 flex items-center justify-center font-bold text-sm flex-shrink-0">4</div>
+          <p><strong>Backups are your only true defense.</strong> If you have an "air-gapped" (disconnected) backup of your data, a ransomware attack is just a minor inconvenience. You simply wipe the computers and restore the files.</p>
+        </li>
+      </ul>
+      <div class="mt-6 flex flex-wrap gap-4">
+        <a href="/tools/breach-calculator" class="inline-flex items-center text-indigo-600 font-bold hover:text-indigo-800 transition-colors">
+          Calculate the actual cost of a data breach
+          <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
