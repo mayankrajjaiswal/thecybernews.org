@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SmartHomeAuditor from '../../components/SmartHomeAuditor';
+---
+
+<Layout title="Smart Home (IoT) Security Auditor" description="Generate a custom security checklist to lock down your smart TVs, cameras, and appliances.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Smart Home Security Auditor
+      </h1>
+      <p class="text-lg text-indigo-800">
+        That new smart plug is actually a tiny, internet-connected computer. Select the smart devices in your home below to generate a custom lockdown checklist.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <SmartHomeAuditor client:load />
+
+    <div class="max-w-4xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">The Danger of the "Internet of Things" (IoT)</h3>
+      <p class="text-slate-600 mb-4">
+        Manufacturers rush cheap smart devices (like lightbulbs, vacuums, and baby monitors) to market as fast as possible. Because profit margins are thin, they rarely spend money on cybersecurity, and they rarely issue software updates to fix bugs.
+      </p>
+      
+      <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg mt-6 mb-6">
+        <h4 class="font-bold text-red-900 mb-2">The Pivot Attack</h4>
+        <p class="text-red-800 text-sm">
+          Hackers don't care about your smart lightbulb; they care about what the lightbulb is connected to. If a hacker finds a vulnerability in your $15 smart plug, they will use it to break into your home Wi-Fi network. From there, they "pivot" and attack your laptop, stealing your passwords and banking data.
+        </p>
+      </div>
+
+      <h4 class="font-bold text-slate-900 mb-2">The Ultimate Defense: Guest Networks</h4>
+      <p class="text-slate-600 mb-4">
+        Almost all modern Wi-Fi routers allow you to create a "Guest Network". You should connect <strong>all</strong> of your smart home devices to the Guest Network, while keeping your laptops and phones on your Main Network. This creates an invisible firewall. If the fridge gets hacked, the hacker cannot jump over to your laptop.
+      </p>
+    </div>
+  </div>
+</Layout>

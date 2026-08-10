@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DomainSpoofer from '../../components/DomainSpoofer';
+---
+
+<Layout title="Corporate Domain Spoofing Generator" description="See exactly how hackers buy look-alike domains to impersonate your business in phishing attacks.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Corporate Domain Spoofing Generator
+      </h1>
+      <p class="text-lg text-indigo-800">
+        Type your company's website address below to see how easy it is for a hacker to buy a slightly misspelled version of your brand and trick your employees.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <DomainSpoofer client:load />
+
+    <div class="max-w-4xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">The Danger of Spear-Phishing</h3>
+      <p class="text-slate-600 mb-4">
+        Generic phishing emails are easily caught by spam filters. But if a hacker wants to specifically target <em>your</em> business (to deploy ransomware or steal a wire transfer), they will launch a "Spear-Phishing" attack.
+      </p>
+      <p class="text-slate-600 mb-6">
+        The first step in their attack is buying a domain name that looks almost identical to yours. They then set up an email server and email your HR or Finance department. Because the email address looks so legitimate, your employees are highly likely to trust it.
+      </p>
+
+      <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg">
+        <h4 class="font-bold text-indigo-900 mb-2">How to defend your business:</h4>
+        <ul class="space-y-3 text-indigo-800 text-sm">
+          <li>• <strong>Defensive Purchasing:</strong> If you own <code>mycompany.com</code>, you should proactively buy <code>mycompany.net</code> and common misspellings to prevent hackers from getting them.</li>
+          <li>• <strong>MFA is Mandatory:</strong> Even if an employee is tricked by a spoofed domain and gives up their password, Multi-Factor Authentication prevents the hacker from actually logging in.</li>
+          <li>• <strong>Security Training:</strong> Show your employees the results of this tool so they understand how easily their eyes can be tricked.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Layout>

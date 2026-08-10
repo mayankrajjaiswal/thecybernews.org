@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AppPermissionsSandbox from '../../components/AppPermissionsSandbox';
+---
+
+<Layout title="Mobile App Permissions Sandbox" description="A gamified tool to practice spotting dangerous mobile app permission requests.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        App Permissions Sandbox
+      </h1>
+      <p class="text-lg text-indigo-800">
+        When you install a new app, it asks for access to your phone's hardware. Test your instincts on what is safe and what is a privacy violation.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex flex-col lg:flex-row gap-12 items-start justify-center">
+      
+      <div class="w-full lg:w-1/2 max-w-md mx-auto">
+        <AppPermissionsSandbox client:load />
+      </div>
+
+      <div class="w-full lg:w-1/2">
+        <div class="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+          <h3 class="text-2xl font-bold text-slate-900 mb-6">Why do free apps want your data?</h3>
+          <p class="text-slate-600 mb-4 text-lg">
+            If you are not paying for the product, <strong>you are the product</strong>. 
+          </p>
+          <p class="text-slate-600 mb-6">
+            Many free apps (like flashlights, calculators, or simple games) request access to your Contacts, Location, and Microphone so they can quietly harvest your data in the background. They then sell this data to marketing companies or malicious actors.
+          </p>
+
+          <h4 class="font-bold text-slate-900 mb-2">The Golden Rule</h4>
+          <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg text-indigo-900 font-medium mb-6">
+            Only grant a permission if the app absolutely requires it to perform its primary function.
+          </div>
+
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="text-emerald-500 mt-1">✅</span>
+              <span class="text-slate-700">A Map app needs your Location.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-red-500 mt-1">❌</span>
+              <span class="text-slate-700">A Calculator app does <strong>not</strong> need your Location.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-emerald-500 mt-1">✅</span>
+              <span class="text-slate-700">A Voice Recorder needs your Microphone.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-red-500 mt-1">❌</span>
+              <span class="text-slate-700">A Solitaire game does <strong>not</strong> need your Microphone.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CyberHealthAudit from '../../components/CyberHealthAudit';
+---
+
+<Layout title="Personal Cyber Health Audit" description="Take a 2-minute quiz to get your personal security score and a custom action plan.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Personal Cyber Health Audit
+      </h1>
+      <p class="text-lg text-indigo-800">
+        Answer 5 quick questions to calculate your Cyber Security Score and get a personalized, step-by-step action plan to secure your digital life.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <CyberHealthAudit client:load />
+
+    <div class="max-w-2xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm text-center">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">100% Private & Secure</h3>
+      <p class="text-slate-600">
+        This audit runs entirely in your web browser. No data is sent to our servers, no accounts are required, and your results are completely private.
+      </p>
+    </div>
+  </div>
+</Layout>

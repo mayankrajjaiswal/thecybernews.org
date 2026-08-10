@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CreditFreezeTracker from '../../components/CreditFreezeTracker';
+---
+
+<Layout title="Credit Freeze & Fraud Alert Tracker" description="Track the status of your credit freezes across Equifax, Experian, and TransUnion.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Credit Freeze Tracker
+      </h1>
+      <p class="text-lg text-indigo-800">
+        Freezing your credit is the single most effective way to stop identity theft. Track your progress as you lock down your file at the major credit bureaus.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <CreditFreezeTracker client:load />
+
+    <div class="max-w-4xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">Why is a Credit Freeze so important?</h3>
+      <p class="text-slate-600 mb-4">
+        Due to massive data breaches over the last decade, you should assume that your Social Security Number, address, and date of birth are already available to hackers on the dark web.
+      </p>
+      <p class="text-slate-600 mb-6">
+        With that information, a scammer can apply for a credit card or loan in your name. If you have a <strong>Credit Freeze</strong> active, the bank cannot check your credit score, and therefore they will automatically deny the scammer's application. 
+      </p>
+
+      <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg">
+        <h4 class="font-bold text-indigo-900 mb-2">Common Myths:</h4>
+        <ul class="space-y-3 text-indigo-800 text-sm">
+          <li>• <strong>"It lowers my credit score."</strong> FALSE. A freeze has absolutely no impact on your credit score.</li>
+          <li>• <strong>"I can't use my current credit cards."</strong> FALSE. A freeze only stops *new* accounts from being opened. Your current cards will work normally.</li>
+          <li>• <strong>"It costs money."</strong> FALSE. By federal law, placing and lifting a credit freeze is 100% free. If a website asks you to pay, you are on the wrong page.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Layout>

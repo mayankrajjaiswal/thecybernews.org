@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DigitalLegacyGenerator from '../../components/DigitalLegacyGenerator';
+---
+
+<Layout title="Digital Legacy & Estate Plan Generator" description="Create a secure, printable plan for your family to access your digital life in an emergency.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Digital Legacy & Estate Plan
+      </h1>
+      <p class="text-lg text-indigo-800">
+        If something happens to you, can your spouse or children access your bank accounts, emails, and family photos? Use this tool to create a secure, physical map to your digital life.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <DigitalLegacyGenerator client:load />
+
+    <div class="max-w-4xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">The Danger of Good Security</h3>
+      <p class="text-slate-600 mb-4">
+        By following good cybersecurity practices (using a Password Manager, unique complex passwords, and Multi-Factor Authentication), you have effectively locked out hackers. Unfortunately, if you pass away unexpectedly, you have also locked out your family.
+      </p>
+      <p class="text-slate-600 mb-6">
+        Tech companies (like Apple and Google) prioritize privacy above all else. Without your password or court orders, they will permanently delete your photos rather than hand them over to grieving family members.
+      </p>
+      
+      <div class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-lg mt-6">
+        <h4 class="font-bold text-indigo-900 mb-2">How to use this generated document:</h4>
+        <ul class="space-y-2 text-indigo-800 text-sm">
+          <li>• <strong>Never type passwords on this page.</strong> Just describe where you hid them (e.g., "In the lockbox in the garage").</li>
+          <li>• Copy the generated text and print it out on physical paper.</li>
+          <li>• Store the printed paper with your physical Will, Life Insurance, and important documents.</li>
+          <li>• Tell your trusted executor exactly where this piece of paper is.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Layout>

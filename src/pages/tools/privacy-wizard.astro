@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PrivacyWizard from '../../components/PrivacyWizard';
+---
+
+<Layout title="Social Media Privacy Wizard" description="Step-by-step guides to locking down your privacy settings on Facebook, Instagram, and TikTok.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Social Media Privacy Wizard
+      </h1>
+      <p class="text-lg text-indigo-800">
+        Social media companies make privacy settings intentionally confusing. Choose your platform below for a click-by-click guide to locking down your account.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <PrivacyWizard client:load />
+
+    <div class="max-w-4xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">The Illusion of Deletion</h3>
+      <p class="text-slate-600 mb-4">
+        It is important to remember that changing a post's visibility to "Private" does not delete it from the internet. The social media company still has it on their servers, and anyone who took a screenshot can still share it.
+      </p>
+      <p class="text-slate-600 mb-4">
+        Privacy settings protect you from casual snooping by strangers, employers, and basic data scrapers, but they are not a silver bullet. 
+      </p>
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg text-blue-800 text-sm">
+        <strong>Best Practice:</strong> The only true privacy setting is deciding not to post sensitive information in the first place.
+      </div>
+    </div>
+  </div>
+</Layout>

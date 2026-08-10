@@ -1,0 +1,41 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FileHashVerifier from '../../components/FileHashVerifier';
+---
+
+<Layout title="Local File Hash Verifier" description="Verify the integrity of downloaded files to prevent malware infections entirely client-side.">
+  <div class="bg-slate-900 py-12 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-4">
+        File Integrity Verifier
+      </h1>
+      <p class="text-lg text-slate-400">
+        Did you download a software installer? Before you run it, generate its cryptographic hash to prove it hasn't been infected with malware.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-slate-100 min-h-screen">
+    <FileHashVerifier client:load />
+
+    <div class="max-w-4xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">Why check a file's hash?</h3>
+      <p class="text-slate-600 mb-4">
+        A cryptographic hash (like SHA-256) is a digital fingerprint for a file. If even a single byte of the file is changed (for example, if a hacker secretly injected a virus into it), the resulting hash will look completely different.
+      </p>
+      <p class="text-slate-600 mb-6">
+        When downloading software (like a cryptocurrency wallet, a VPN, or an operating system), the official developer will often publish the expected SHA-256 hash on their website. By computing the hash of the file you actually downloaded and comparing it to the one on the official website, you mathematically guarantee the file is authentic.
+      </p>
+
+      <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg">
+        <h4 class="font-bold text-emerald-900 mb-1 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          100% Private & Secure
+        </h4>
+        <p class="text-emerald-800 text-sm">
+          Unlike many online virus scanners, this tool <strong>never uploads your file to the internet</strong>. It uses the Web Crypto API built into modern browsers to read the file and do the complex math entirely on your local device. This makes it instantly fast and completely private.
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>

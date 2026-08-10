@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import JsonFormatter from '../../components/JsonFormatter';
+---
+
+<Layout title="JSON Formatter & Validator" description="Safely parse, format, and validate JSON data entirely in your browser without sending sensitive logs to a server.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        JSON Formatter & Validator
+      </h1>
+      <p class="text-lg text-indigo-800">
+        A developer utility to quickly format, minify, and validate JSON. <strong>100% Client-Side.</strong> Your proprietary data never leaves your browser.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <JsonFormatter client:load />
+
+    <div class="max-w-4xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+      <h3 class="text-xl font-bold text-slate-900 mb-4">Why use a local JSON Formatter?</h3>
+      <p class="text-slate-600 mb-4">
+        IT professionals often need to parse minified JSON from API responses, database dumps, or application logs. 
+      </p>
+      <p class="text-slate-600 mb-4">
+        Unfortunately, many developers default to pasting this data into random "Free JSON Formatter" websites they find on Google. If those logs contain Personally Identifiable Information (PII), secret API keys, or proprietary company data, pasting it into a remote server is a massive security risk and a direct violation of most data privacy laws.
+      </p>
+      <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg text-emerald-800 text-sm">
+        <strong>Security First:</strong> Because TheCyberNews.org relies entirely on Astro and React "Islands" running in your browser, this tool processes your data locally on your machine. You can safely format sensitive JSON without risking a data leak.
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -9,6 +9,12 @@ const tools = [
     icon: 'M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z'
   },
   {
+    title: 'Password Strength Visualizer',
+    description: 'Test a password to see its mathematical entropy and estimated time to crack.',
+    href: '/tools/password-strength',
+    icon: 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z'
+  },
+  {
     title: 'Have I Been Pwned Check',
     description: 'Quickly see if your password has been exposed in any known data breaches securely.',
     href: '/tools/breach-check',
@@ -19,6 +25,12 @@ const tools = [
     description: 'Unscramble suspicious, jumbled website links to see exactly where they actually lead.',
     href: '/tools/url-decoder',
     icon: 'M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1'
+  },
+  {
+    title: 'Anatomy of a Link',
+    description: 'Break down a URL to find the true root domain and spot homograph attacks.',
+    href: '/tools/link-anatomy',
+    icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7'
   },
   {
     title: 'Secure Hash Generator',
@@ -33,10 +45,34 @@ const tools = [
     icon: 'M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12'
   },
   {
+    title: 'JSON Formatter & Validator',
+    description: 'Safely parse, format, and validate sensitive JSON logs entirely client-side.',
+    href: '/tools/json-formatter',
+    icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
+  },
+  {
+    title: 'Local File Hash Verifier',
+    description: 'Check a file for malware tampering by computing its SHA-256 fingerprint entirely locally.',
+    href: '/tools/file-verifier',
+    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
+  },
+  {
+    title: 'MFA Authenticator Simulator',
+    description: 'Gamified sandbox to visually understand how 6-digit authenticator app codes are generated.',
+    href: '/tools/mfa-simulator',
+    icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z'
+  },
+  {
     title: 'Regex Tester & Visualizer',
     description: 'Safely test regular expressions against sensitive logs entirely client-side.',
     href: '/tools/regex-tester',
     icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
+  },
+  {
+    title: 'Email Header Analyzer',
+    description: 'Parse raw email headers to check SPF, DKIM, and DMARC results and spot spoofing.',
+    href: '/tools/email-analyzer',
+    icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
   },
   {
     title: 'DNS & Domain Lookup',
@@ -57,10 +93,124 @@ const tools = [
     icon: 'M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4'
   },
   {
+    title: 'Dangerous File Extensions',
+    description: 'Searchable database of file types color-coded by their malware danger level.',
+    href: '/tools/mime-types',
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+  },
+  {
     title: 'CLI Command Cheat Sheet',
     description: 'An interactive quick-reference for networking and sysadmin terminal commands.',
     href: '/tools/cli-cheat-sheet',
     icon: 'M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'
+  },
+  {
+    title: 'Interactive Phishing Spotter',
+    description: 'Gamified tool to practice spotting red flags in fake emails.',
+    href: '/tools/phishing-spotter',
+    icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
+  },
+  {
+    title: 'QR Code "Quishing" Sandbox',
+    description: 'Practice scanning physical QR codes and spotting fake URLs before you get hacked.',
+    href: '/tools/quishing-sandbox',
+    icon: 'M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z'
+  },
+  {
+    title: 'App Permissions Sandbox',
+    description: 'A mock smartphone interface to practice granting or denying app permissions.',
+    href: '/tools/app-permissions',
+    icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z'
+  },
+  {
+    title: 'Security Policy Generator',
+    description: 'Instantly generate a custom Acceptable Use Policy for your small business.',
+    href: '/tools/policy-generator',
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+  },
+  {
+    title: 'NIST Password Policy',
+    description: 'Generate a modern, NIST-compliant password policy that abandons outdated 90-day rotations.',
+    href: '/tools/nist-password-policy',
+    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'
+  },
+  {
+    title: 'Family Internet Safety Contract',
+    description: 'Create a printable agreement with your children about screen time and digital citizenship.',
+    href: '/tools/family-contract',
+    icon: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z'
+  },
+  {
+    title: 'Credit Freeze Tracker',
+    description: 'Track the status of your credit freezes across Equifax, Experian, and TransUnion.',
+    href: '/tools/credit-freeze',
+    icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+  },
+  {
+    title: 'Cyber Mythbuster',
+    description: 'Interactive flashcards separating cybersecurity fact from Hollywood fiction.',
+    href: '/tools/mythbuster',
+    icon: 'M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+  },
+  {
+    title: 'Personal Cyber Health Audit',
+    description: 'Take a 2-minute quiz to get your security score and custom action plan.',
+    href: '/tools/cyber-health-audit',
+    icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+  },
+  {
+    title: 'Smart Home Security Auditor',
+    description: 'Select the smart devices in your home to generate a custom lockdown checklist.',
+    href: '/tools/smart-home-auditor',
+    icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'
+  },
+  {
+    title: 'Social Media Privacy Wizard',
+    description: 'Click-by-click instructions for locking down privacy settings on major social apps.',
+    href: '/tools/privacy-wizard',
+    icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z'
+  },
+  {
+    title: 'Data Broker Opt-Out Directory',
+    description: 'Interactive checklist to remove your personal information from people-search databases.',
+    href: '/tools/opt-out',
+    icon: 'M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16'
+  },
+  {
+    title: 'Data Breach Cost Calculator',
+    description: 'Interactive financial simulator showing small businesses the true cost of a cyberattack.',
+    href: '/tools/breach-calculator',
+    icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+  },
+  {
+    title: 'Is It a Scam? Decision Tree',
+    description: 'An interactive flowchart to quickly determine if a suspicious text or call is a scam.',
+    href: '/tools/scam-decision-tree',
+    icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4'
+  },
+  {
+    title: 'Corporate Domain Spoofing Generator',
+    description: 'See exactly how hackers buy look-alike domains to impersonate your business in phishing attacks.',
+    href: '/tools/domain-spoofer',
+    icon: 'M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9'
+  },
+  {
+    title: 'Digital Legacy & Estate Plan',
+    description: 'Create a secure, printable plan for your family to access your digital life in an emergency.',
+    href: '/tools/digital-legacy',
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+  },
+  {
+    title: 'Emergency Action Wizard',
+    description: 'Panic button: Get prioritized recovery steps if you think you\'ve been hacked.',
+    href: '/tools/emergency-wizard',
+    icon: 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'
+  },
+  {
+    title: 'Ransomware Crisis Simulator',
+    description: 'Interactive "Choose Your Own Adventure" game teaching incident response.',
+    href: '/tools/ransomware-sim',
+    icon: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z'
   }
 ];
 

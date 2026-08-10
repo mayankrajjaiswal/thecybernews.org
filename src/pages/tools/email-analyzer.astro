@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import EmailHeaderAnalyzer from '../../components/EmailHeaderAnalyzer';
+---
+
+<Layout title="Email Header Analyzer" description="Paste raw email headers to scientifically prove if an email is a forged phishing attempt.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Email Header Analyzer
+      </h1>
+      <p class="text-lg text-indigo-800">
+        Become a Phishing Detective. Extract the hidden code behind any email to see exactly who sent it and if it passed security checks.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <EmailHeaderAnalyzer client:load />
+
+    <div class="max-w-4xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+        <h3 class="text-xl font-bold text-slate-900 mb-4">How to find Email Headers</h3>
+        <p class="text-slate-600 mb-4">
+          Every email contains hidden "headers" that show the route it took across the internet. 
+        </p>
+        <ul class="space-y-3 text-slate-700">
+          <li><strong>Gmail:</strong> Open the email, click the three dots (More) in the top right, and select "Show original".</li>
+          <li><strong>Outlook:</strong> Open the email, click the three dots, select "View", then "View message details".</li>
+          <li><strong>Apple Mail:</strong> Open the email, click View > Message > All Headers.</li>
+        </ul>
+        <p class="text-slate-500 text-sm mt-4 italic">Copy the block of text at the top and paste it into the tool.</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+        <h3 class="text-xl font-bold text-slate-900 mb-4">The "Holy Trinity" of Email</h3>
+        <p class="text-slate-600 mb-3">
+          It is incredibly easy for hackers to fake the "From" address to look like your boss or your bank. Modern email uses three protocols to stop this:
+        </p>
+        <ul class="space-y-2 text-slate-700 text-sm">
+          <li><strong class="text-slate-900">SPF:</strong> A list of IP addresses allowed to send mail for a domain.</li>
+          <li><strong class="text-slate-900">DKIM:</strong> A cryptographic signature ensuring the email wasn't tampered with in transit.</li>
+          <li><strong class="text-slate-900">DMARC:</strong> The boss rule. It tells the receiving server to reject the email if SPF or DKIM fail.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Layout>

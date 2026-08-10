@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Mythbuster from '../../components/Mythbuster';
+---
+
+<Layout title="Cyber Mythbuster: Can I get hacked if...?" description="Interactive flashcards separating cybersecurity fact from Hollywood fiction.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Cyber Mythbuster
+      </h1>
+      <p class="text-lg text-indigo-800">
+        Hollywood movies make hacking look like magic. Let's separate the facts from the fiction so you know what actually puts you at risk.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <Mythbuster client:load />
+    
+    <div class="max-w-4xl mx-auto mt-12 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm text-center">
+      <p class="text-slate-600 mb-6 text-lg">
+        The most common way people get "hacked" isn't through complex code or super-viruses. It is through <strong>Social Engineering</strong>—simply tricking you into handing over your password. 
+      </p>
+      <a href="/tools/scam-decision-tree" class="inline-flex items-center text-indigo-600 font-bold hover:text-indigo-800 transition-colors text-lg border-b-2 border-indigo-200 hover:border-indigo-600 pb-1">
+        Try the "Is It a Scam?" Decision Tree 
+        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+      </a>
+    </div>
+  </div>
+</Layout>

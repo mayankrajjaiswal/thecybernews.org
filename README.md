@@ -52,14 +52,40 @@ The platform is structured around six main interconnected pillars:
   * **Secure Hash Generator:** Computes SHA-256 and SHA-512 cryptographic hashes.
   * **Base64 Encoder/Decoder:** Safely encode and decode strings.
   * **JWT Decoder:** Analyze JSON Web Tokens without transmitting sensitive payload claims.
+  * **CLI Command Cheat Sheet:** Interactive quick-reference for networking terminal commands.
+  * **Interactive Phishing Spotter:** A gamified tool to practice spotting red flags in fake emails.
+  * **Personal Cyber Health Audit:** A step-by-step interactive questionnaire that calculates a personal security score and outputs a customized action plan.
+  * **Emergency Action Wizard ("I've Been Hacked!"):** A dynamic decision-tree that outputs prioritized recovery steps based on user panic scenarios.
+  * **Password Strength Visualizer:** Test a password to see its mathematical entropy and estimated time to crack.
+  * **App Permissions Sandbox:** A gamified mock smartphone interface to practice granting or denying app permissions.
+  * **Security Policy Generator:** Instantly generate a custom Acceptable Use Policy for small businesses.
+  * **Anatomy of a Link:** Break down a URL to find the true root domain and spot homograph attacks.
+  * **Email Header Analyzer (Phishing Detective):** Parse raw email headers locally to check SPF, DKIM, and DMARC results to spot spoofing.
+  * **Data Breach Cost Calculator:** Interactive financial simulator showing small businesses the true cost of a cyberattack.
+  * **Social Media Privacy Wizard:** Click-by-click instructions for locking down privacy settings on major social apps.
+  * **JSON Formatter & Validator:** Safely parse, format, and validate sensitive JSON logs entirely client-side without risking a data leak.
+  * **Local File Hash Verifier:** Check a file for malware tampering by computing its SHA-256 fingerprint entirely locally via the Web Crypto API.
+  * **MFA Authenticator Simulator:** Gamified sandbox to visually understand how 6-digit authenticator app codes are generated without an internet connection.
+  * **Dangerous File Extensions (MIME) Reference:** Searchable database of file types color-coded by their malware danger level.
+  * **Data Broker Opt-Out Directory:** Interactive checklist to systematically remove your personal information from people-search databases.
+  * **Ransomware Crisis Simulator:** An interactive "Choose Your Own Adventure" game teaching small businesses incident response.
+  * **NIST Password Policy Generator:** Generate a modern, NIST-compliant password policy that abandons outdated 90-day rotations.
+  * **QR Code "Quishing" Sandbox:** Practice scanning physical QR codes and spotting fake URLs before you get hacked.
+  * **"Is It a Scam?" Decision Tree:** An interactive flowchart to quickly determine if a suspicious text or call is a social engineering attack.
+  * **Family Internet Safety Contract:** Generate a clear, printable agreement about screen time, online gaming, and safety for children.
+  * **Credit Freeze Tracker:** Track your progress locking down your credit file at Equifax, Experian, and TransUnion.
+  * **Cyber Mythbuster:** Interactive flashcards separating cybersecurity fact from Hollywood fiction.
+  * **Smart Home Security Auditor:** Select the smart devices in your home to generate a custom lockdown checklist.
+  * **Digital Legacy & Estate Plan:** Create a secure, printable plan for your family to access your digital life in an emergency.
+  * **Corporate Domain Spoofing Generator:** See exactly how hackers buy look-alike domains to impersonate your business in phishing attacks.
 
 ### 7. Curated Resources (`/resources`)
 * **Feature:** A directory of trusted external organizations, government agencies, and community databases.
 * **Purpose:** Provides a safe, vetted list of external links (like CISA or HaveIBeenPwned) so users don't have to rely on Google search results where scammers buy fake ads.
 
-### 8. Global Search Engine (Pagefind)
-* **Feature:** A highly optimized, strictly client-side search engine integrated into the main navigation header.
-* **Purpose:** Allows users to perform instant, fuzzy searches across the entire dictionary, scam database, and educational hubs without relying on a slow backend server.
+### 8. Global Search & Local Bookmarking
+* **Feature (Search):** A highly optimized, strictly client-side search engine integrated into the main navigation header.
+* **Feature (Bookmarking):** A purely client-side "My Saved Guides" feature using `localStorage`. Users can bookmark articles, dictionary terms, and guides across the site to build a personal reading list (`/saved`) without needing to create a user account.
 
 ### 9. Interactive Quizzes & MDX Support (Phase 3)
 * **Feature:** The content engine has been upgraded to support `.mdx` files. This allows you to write standard Markdown while safely embedding interactive React components directly into the text.

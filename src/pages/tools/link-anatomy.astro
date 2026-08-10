@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LinkAnatomyAnalyzer from '../../components/LinkAnatomyAnalyzer';
+---
+
+<Layout title="Link Anatomy Analyzer" description="Learn how to read a URL and spot advanced phishing links before you click.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Anatomy of a Link
+      </h1>
+      <p class="text-lg text-indigo-800">
+        Paste a suspicious URL below. We will break it apart and show you exactly where it is trying to send you.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <LinkAnatomyAnalyzer client:load />
+
+    <div class="max-w-4xl mx-auto mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+        <h3 class="text-xl font-bold text-slate-900 mb-4">The Subdomain Trick</h3>
+        <p class="text-slate-600 mb-4">
+          When you buy a domain name (like <code>example.com</code>), you get to create as many "subdomains" as you want for free. They go on the <em>left</em> side of the root domain.
+        </p>
+        <p class="text-slate-600">
+          So, if a hacker buys <code>secure-update.net</code>, they can create a subdomain called <code>paypal.com</code>. The resulting link looks like: <br/><br/>
+          <strong class="bg-red-50 text-red-700 px-2 py-1 rounded border border-red-200">paypal.com.secure-update.net</strong><br/><br/>
+          Your eyes naturally read left-to-right, so you see "paypal" and trust it. But the internet reads right-to-left. <strong>The word just before the .com or .net is the only one that matters.</strong>
+        </p>
+      </div>
+
+      <div class="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+        <h3 class="text-xl font-bold text-slate-900 mb-4">The Homoglyph Trick</h3>
+        <p class="text-slate-600 mb-4">
+          Sometimes hackers don't even bother with subdomains. They just register a domain name that looks identical to the real one.
+        </p>
+        <ul class="space-y-3 text-slate-600 font-mono text-sm mb-4">
+          <li>microsoft.com <span class="text-slate-400 font-sans text-xs ml-2">(Real)</span></li>
+          <li class="text-red-600">rnicrosoft.com <span class="text-slate-400 font-sans text-xs ml-2">(Fake: r + n)</span></li>
+        </ul>
+        <ul class="space-y-3 text-slate-600 font-mono text-sm">
+          <li>apple.com <span class="text-slate-400 font-sans text-xs ml-2">(Real)</span></li>
+          <li class="text-red-600">appIe.com <span class="text-slate-400 font-sans text-xs ml-2">(Fake: Capital I)</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</Layout>
