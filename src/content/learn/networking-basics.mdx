@@ -1,0 +1,35 @@
+---
+title: "Basics of Computer Networking"
+description: "Understanding the OSI Model and TCP/IP stack in plain English."
+category: "Guide"
+audience: ["student", "it", "business"]
+difficulty: "Beginner"
+readingTime: "4 min"
+author: "TheCyberNews Editorial"
+version: "1.0"
+---
+
+## What is a Computer Network?
+
+At its core, a computer network is simply two or more computers connected together so they can share information. When you load a website, your computer is talking to another computer (a server) somewhere else in the world.
+
+## The Models that Make it Work
+
+Networking is often taught using two models: the **OSI Model** and the **TCP/IP Model**. 
+Think of these models like the postal service. To send a letter, you need to write it, put it in an envelope, write the address, add a stamp, and hand it to the postman. Each of these steps is a "layer" in the networking model.
+
+- **TCP/IP** is the actual language of the internet.
+- **OSI** is a theoretical 7-layer model used to help people understand how data travels from a physical cable all the way up to the web browser.
+
+Understanding these layers helps IT professionals figure out where a problem is happening when the internet "stops working."
+
+import KnowledgeCheck from '../../components/KnowledgeCheck.tsx';
+
+<KnowledgeCheck client:load questions={[
+  {
+    question: "What is the primary purpose of the OSI and TCP/IP models?",
+    options: ["To make internet faster", "To explain how data travels across a network in layers", "To prevent hackers from accessing your computer"],
+    correctAnswerIndex: 1,
+    explanation: "These models break down the complex process of network communication into easy-to-understand layers."
+  }
+]} />

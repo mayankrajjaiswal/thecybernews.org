@@ -1,0 +1,36 @@
+---
+title: "Public vs Private IPs"
+description: "Understanding IP addresses, Subnetting basics, and Default Gateways."
+category: "Guide"
+audience: ["student", "business", "parent"]
+difficulty: "Beginner"
+readingTime: "4 min"
+author: "TheCyberNews Editorial"
+version: "1.0"
+---
+
+## What is an IP Address?
+
+An IP (Internet Protocol) address is like a digital home address. Every device connected to the internet needs one so other devices know where to send information.
+
+## Public vs. Private
+
+- **Public IP:** This is the address given to your home router by your Internet Service Provider. It is visible to the entire internet.
+- **Private IP:** These are the addresses your router assigns to your personal devices (like your phone, laptop, or smart TV). These are *not* visible to the internet. 
+
+Your router uses a technology called NAT (Network Address Translation) to act as a middleman. When your phone wants to load a website, the router requests it using the Public IP, and then privately hands the website data back to your phone.
+
+## Default Gateway
+
+Your **Default Gateway** is usually your router's private IP address. When a device doesn't know how to reach a destination on the local network, it sends the data to the default gateway, which figures out how to route it to the internet.
+
+import KnowledgeCheck from '../../components/KnowledgeCheck.tsx';
+
+<KnowledgeCheck client:load questions={[
+  {
+    question: "Which of the following is true about a Private IP address?",
+    options: ["It is visible to everyone on the internet", "It is assigned by your local router and hidden from the internet", "It is only used by hackers"],
+    correctAnswerIndex: 1,
+    explanation: "Private IPs are for internal local networks and are hidden behind your router's NAT."
+  }
+]} />

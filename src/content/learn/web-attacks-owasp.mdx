@@ -1,0 +1,33 @@
+---
+title: "Web Attacks & OWASP Top 10"
+description: "A beginner's guide to how websites are hacked."
+category: "Guide"
+audience: ["student", "it", "business"]
+difficulty: "Beginner"
+readingTime: "4 min"
+author: "TheCyberNews Editorial"
+version: "1.0"
+---
+
+## What is OWASP?
+
+The Open Worldwide Application Security Project (OWASP) is a non-profit foundation that works to improve the security of software. They are most famous for publishing the **OWASP Top 10**—a list of the ten most critical security risks to web applications.
+
+## Common Web Attacks Explained
+
+1. **SQL Injection (SQLi):** When an attacker types database commands into a website's search box or login form, tricking the server into revealing hidden data (like passwords).
+2. **Broken Authentication:** When a website has weak password rules or doesn't protect login sessions, allowing attackers to easily hijack user accounts.
+3. **Cross-Site Scripting (XSS):** When an attacker sneaks malicious code into a website (like a comments section) that executes when other innocent users view the page.
+
+Understanding these basic attacks is the first step in learning how to defend against them or how to build secure software.
+
+import KnowledgeCheck from '../../components/KnowledgeCheck.tsx';
+
+<KnowledgeCheck client:load questions={[
+  {
+    question: "What type of attack involves typing database commands into a website form?",
+    options: ["Cross-Site Scripting (XSS)", "SQL Injection (SQLi)", "Denial of Service (DoS)"],
+    correctAnswerIndex: 1,
+    explanation: "SQLi specifically targets the backend database by injecting SQL commands."
+  }
+]} />
