@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PortReference from '../../components/PortReference';
+---
+
+<Layout title="Common Network Ports Reference" description="A quick, searchable reference guide for the most common networking ports used in cybersecurity and IT.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Network Port Reference
+      </h1>
+      <p class="text-lg md:text-xl text-indigo-800 max-w-2xl mx-auto">
+        A quick, searchable cheat sheet for the most common TCP and UDP networking ports used in cybersecurity and IT.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <PortReference client:load />
+
+    <div class="mt-16 prose prose-slate max-w-none">
+      <h2>What is a Network Port?</h2>
+      <p>
+        In computer networking, a port is a communication endpoint. While an IP address identifies a specific computer on a network, a port identifies a specific application or service running on that computer. 
+      </p>
+      <p>
+        Think of an IP address as a large apartment building, and the port number as a specific apartment number. If you send a package to the building (IP), it needs the apartment number (Port) to reach the correct person (Service).
+      </p>
+      
+      <h3>Why are ports important for cybersecurity?</h3>
+      <p>
+        Hackers use tools like Nmap to scan a target server and see which ports are "open." If a hacker sees that Port 23 (Telnet) is open, they know the server is running an outdated, unencrypted protocol that might be easily exploited. Firewalls are configured to block traffic based on these port numbers, acting as the security guard for the apartment building.
+      </p>
+    </div>
+  </div>
+</Layout>

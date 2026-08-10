@@ -1,0 +1,54 @@
+---
+title: Browser Security and Extensions
+category: Guide
+subcategory: Digital Privacy
+difficulty: Intermediate
+readingTime: 6 min read
+audience: ['student', 'employee', 'senior', 'parent', 'it']
+description: Your web browser is the gateway to the internet. Learn how to secure it against tracking and malicious extensions.
+relatedTopics: ['malware', 'keylogger']
+---
+
+## The Most Important App on Your Computer
+Whether you use Chrome, Edge, Safari, or Firefox, your web browser is likely the application you use more than anything else. It handles your banking sessions, stores your passwords, and reads your emails. 
+
+Because it handles so much sensitive data, it is a massive target for cybercriminals and data brokers. Securing your browser is one of the highest-impact security improvements you can make.
+
+## 1. The Danger of Malicious Extensions
+Browser extensions (or "add-ons") are small pieces of software you install to add features to your browser (like a grammar checker or a coupon finder). 
+
+**The Threat:** When you install an extension, it almost always asks for permission to "Read and change all your data on all websites." If that extension is secretly malicious, it acts as a digital spy. It can read your emails, steal your credit card numbers as you type them, and inject hidden advertisements into your search results.
+Even worse, a safe extension you downloaded years ago can be sold by its developer to a shady company, which then updates the extension to include spyware without you knowing.
+
+**The Fix:**
+* **Audit your extensions:** Type `chrome://extensions` (or your browser's equivalent) into your address bar. Delete every single extension you do not recognize or actively use every week.
+* **Be skeptical:** Never install an extension just because a website pop-up told you to. Only download extensions from official stores, and check the reviews carefully.
+
+## 2. Ad-Blockers are Security Tools
+Most people think of ad-blockers as tools for convenience, to stop annoying YouTube videos from interrupting their viewing. In reality, **ad-blockers are critical cybersecurity tools.**
+
+Hackers frequently buy legitimate advertising space on major websites (like news sites or recipe blogs) and upload ads containing malicious code. This is called "Malvertising." If you visit the website, the ad can attempt to infect your computer even if you don't click on it.
+Furthermore, scammers buy the top advertising slots on Google Search for terms like "Download VLC player" or "Bank Customer Service." The top link looks real, but it takes you to a virus.
+
+**The Fix:** Install a highly trusted, open-source ad-blocker like **uBlock Origin**. By blocking the ads from loading entirely, you physically block the malware from reaching your computer.
+
+## 3. Keep It Updated
+Web browsers are incredibly complex, and security researchers find new "Zero-Day" vulnerabilities in them constantly. 
+When Chrome or Edge displays a small "Update" button in the top right corner, do not ignore it. That update usually contains a critical patch preventing hackers from taking over your computer via a compromised website.
+
+import KnowledgeCheck from '../../components/KnowledgeCheck.tsx';
+
+<KnowledgeCheck client:load questions={[
+  {
+    question: "Why can browser extensions be dangerous?",
+    options: ["They slow down your internet speed", "They often require permission to read everything you type on every website", "They cost money to maintain", "They use up your hard drive space"],
+    correctAnswerIndex: 1,
+    explanation: "Most extensions request permission to 'Read and change all your data on all websites'. A malicious extension uses this permission to act as a keylogger, stealing passwords and credit card numbers."
+  },
+  {
+    question: "Why do cybersecurity professionals recommend using ad-blockers?",
+    options: ["To save internet bandwidth", "To stop YouTube ads", "To prevent 'Malvertising' (malicious advertisements that install viruses)", "To bypass paywalls"],
+    correctAnswerIndex: 2,
+    explanation: "Ad-blockers are critical security tools because they prevent malicious advertisements from loading on your screen, protecting you from drive-by downloads and fake Google Search ads."
+  }
+]} />

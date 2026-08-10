@@ -1,0 +1,34 @@
+---
+title: "The 6 Phases of Incident Response"
+description: "How security teams react when a breach happens."
+category: "Guide"
+audience: ["it", "business", "student"]
+difficulty: "Beginner"
+readingTime: "4 min"
+author: "TheCyberNews Editorial"
+version: "1.0"
+---
+
+## What is Incident Response?
+
+Incident Response (IR) is the structured approach a company takes when a cyberattack or security breach occurs. The goal is to handle the situation quickly to limit damage and reduce recovery time and costs.
+
+## The 6 Phases (SANS Institute Model)
+
+1. **Preparation:** Having a plan, training staff, and ensuring backups exist *before* an attack happens.
+2. **Identification:** Detecting the breach and determining its scope. (Is it a false alarm or a real attack?)
+3. **Containment:** Stopping the bleeding. This means isolating infected computers from the network so the attack doesn't spread.
+4. **Eradication:** Finding the root cause and removing the malware, hacker access, or vulnerabilities from the systems.
+5. **Recovery:** Restoring systems from clean backups and carefully bringing them back online while monitoring for any signs of return.
+6. **Lessons Learned:** Analyzing what went wrong and updating the preparation phase so it doesn't happen again.
+
+import KnowledgeCheck from '../../components/KnowledgeCheck.tsx';
+
+<KnowledgeCheck client:load questions={[
+  {
+    question: "In which phase of incident response do you disconnect infected computers from the network to stop the attack from spreading?",
+    options: ["Preparation", "Containment", "Eradication"],
+    correctAnswerIndex: 1,
+    explanation: "Containment is about isolating the threat to stop the bleeding before it spreads further."
+  }
+]} />

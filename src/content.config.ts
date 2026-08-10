@@ -60,10 +60,17 @@ const newsCollection = defineCollection({
 });
 
 const resourcesCollection = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/resources' }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/resources' }),
   schema: baseSchema.extend({
     url: z.string().url(), // the official external link
     type: z.enum(['Government', 'Framework', 'Community', 'Corporate']),
+  }),
+});
+
+const downloadsCollection = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/downloads' }),
+  schema: baseSchema.extend({
+    fileType: z.enum(['Printable Cheat Sheet', 'Checklist', 'Poster']),
   }),
 });
 
@@ -73,4 +80,5 @@ export const collections = {
   dictionary: dictionaryCollection,
   news: newsCollection,
   resources: resourcesCollection,
+  downloads: downloadsCollection,
 };

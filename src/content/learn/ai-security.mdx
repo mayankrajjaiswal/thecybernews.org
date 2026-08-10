@@ -1,0 +1,60 @@
+---
+title: AI Security and Deepfake Scams
+category: Guide
+subcategory: Threat Defense
+difficulty: Intermediate
+readingTime: 7 min read
+audience: ['student', 'parent', 'business', 'employee']
+description: How scammers are using Artificial Intelligence to clone voices, generate fake videos, and steal corporate data.
+relatedTopics: ['deepfake', 'social-engineering']
+---
+
+## The AI Revolution in Cybercrime
+Artificial Intelligence (AI) tools like ChatGPT, Midjourney, and ElevenLabs have revolutionized productivity. Unfortunately, they have also revolutionized cybercrime. 
+
+Scammers no longer need to speak perfect English to write convincing phishing emails, and they no longer need to be skilled actors to impersonate your boss on a phone call. AI does it for them instantly.
+
+## Threat 1: Voice Cloning and "The Grandparent Scam"
+In the past, a scammer would call an elderly person pretending to be a police officer, claiming their grandchild was in jail and needed bail money. 
+Today, the scammer only needs a **3-second audio clip** of the grandchild's voice (often pulled from a public TikTok or Instagram video). They feed that 3-second clip into an AI voice cloner. 
+
+When the grandparents answer the phone, they hear the exact, unmistakable voice of their grandchild crying and begging for help. The panic is immediate, and the scam is highly effective.
+
+**The Defense: Establish a "Safe Word"**
+* Sit down with your family and establish a unique "Safe Word" (e.g., "Blueberry Pancake"). 
+* If anyone in the family ever calls from an unknown number asking for emergency money, demand the safe word. If the person on the phone doesn't know it, it is an AI clone. Hang up and dial their real phone number.
+
+## Threat 2: Deepfake Videos
+A Deepfake is an AI-generated video that seamlessly maps someone's face onto another person's body. 
+* **Romance Scams:** Scammers create fake dating profiles using Deepfaked videos of models or military personnel to trick victims into sending them money.
+* **Corporate Fraud:** Scammers will join a corporate Zoom call using a Deepfake of the company's CEO, verbally instructing the accounting department to wire millions of dollars to a "secret vendor."
+
+**The Defense: Look for the Glitches**
+Deepfakes are not perfect yet. Look for unnatural blinking, blurriness around the edge of the hair/neck, or a voice that doesn't perfectly sync with the mouth movements. If you are on a suspicious Zoom call, ask the person to turn their head sideways; AI often fails to render side-profiles correctly.
+
+## Threat 3: Data Leaks via ChatGPT
+Employees love using AI chatbots (like ChatGPT, Claude, or Gemini) to write code, summarize long meetings, or draft emails. 
+The danger occurs when employees paste **highly confidential company data** into the chatbot.
+
+If you paste your company's proprietary source code or a list of customer social security numbers into a public AI tool, that data is absorbed into the AI's training model. It is effectively leaked to the public, and the AI might accidentally spit that confidential data out to a random user next week.
+
+**The Defense:**
+* Never paste Personally Identifiable Information (PII) or confidential company secrets into a public AI tool.
+* If your company requires AI, pay for an "Enterprise" version of the tool, which legally guarantees your data is kept private and not used for training.
+
+import KnowledgeCheck from '../../components/KnowledgeCheck.tsx';
+
+<KnowledgeCheck client:load questions={[
+  {
+    question: "What is the best defense against AI Voice Cloning phone scams?",
+    options: ["Refuse to answer unknown numbers", "Establish a family 'Safe Word'", "Install a voice-scanner app on your phone", "Pay the ransom"],
+    correctAnswerIndex: 1,
+    explanation: "A secret family Safe Word is the only foolproof way to instantly verify if the person on the phone is actually your loved one or an AI clone."
+  },
+  {
+    question: "Why is it dangerous for employees to paste company data into public AI chatbots like ChatGPT?",
+    options: ["The chatbot will get a virus", "The AI will refuse to answer the prompt", "The data is absorbed into the AI's training model and effectively made public", "It uses too much internet bandwidth"],
+    correctAnswerIndex: 2,
+    explanation: "Public AI models use the data you paste into them to train themselves. Your confidential data could accidentally be repeated to other users."
+  }
+]} />

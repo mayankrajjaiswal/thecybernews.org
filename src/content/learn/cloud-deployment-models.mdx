@@ -1,0 +1,40 @@
+---
+title: "Cloud Deployment Models (IaaS, PaaS, SaaS)"
+description: "Breaking down the acronyms of cloud computing."
+category: "Guide"
+audience: ["business", "it", "student"]
+difficulty: "Beginner"
+readingTime: "4 min"
+author: "TheCyberNews Editorial"
+version: "1.0"
+---
+
+## The Pizza as a Service Analogy
+
+Understanding cloud models is easiest when compared to eating pizza.
+
+### 1. On-Premises (Made at Home)
+You buy the ingredients, the oven, the gas, the dining table, and you do the cooking and the cleaning. You manage everything.
+
+### 2. IaaS: Infrastructure as a Service (Take and Bake)
+The grocery store provides the pre-made pizza. You still have to use your own oven, gas, and table to cook and eat it. 
+*Example: Renting a raw virtual machine on AWS.*
+
+### 3. PaaS: Platform as a Service (Pizza Delivery)
+The pizza place makes it and cooks it for you. You just provide the dining table and the drinks.
+*Example: A platform where developers just upload their code, and the cloud handles the servers.*
+
+### 4. SaaS: Software as a Service (Dine-in Restaurant)
+You show up at the restaurant. They provide the pizza, the oven, the table, the drinks, and do the cleaning. You just consume the service.
+*Example: Gmail or Netflix.*
+
+import KnowledgeCheck from '../../components/KnowledgeCheck.tsx';
+
+<KnowledgeCheck client:load questions={[
+  {
+    question: "Which model is like eating at a dine-in restaurant, where the provider manages everything?",
+    options: ["IaaS (Infrastructure as a Service)", "SaaS (Software as a Service)", "PaaS (Platform as a Service)"],
+    correctAnswerIndex: 1,
+    explanation: "In SaaS, the software is fully hosted and managed by the vendor."
+  }
+]} />

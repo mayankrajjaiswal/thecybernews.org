@@ -1,0 +1,37 @@
+---
+title: "Authentication vs. Authorization"
+description: "Understanding the difference between who you are and what you can do."
+category: "Guide"
+audience: ["employee", "business", "it"]
+difficulty: "Beginner"
+readingTime: "4 min"
+author: "TheCyberNews Editorial"
+version: "1.0"
+---
+
+## The Difference is Crucial
+
+These two terms sound similar but represent two completely different steps in security (often referred to together as IAM: Identity and Access Management).
+
+### Authentication (Who are you?)
+Authentication is the process of verifying your identity. 
+- *Analogy:* Showing your passport at border control.
+- *Examples:* Entering a password, scanning your fingerprint, or using an MFA app on your phone.
+
+### Authorization (What are you allowed to do?)
+Once the system knows who you are, it must decide what you are allowed to access.
+- *Analogy:* After passing border control, your visa dictates whether you can work, study, or just travel as a tourist.
+- *Examples:* A standard employee can only view their own paystub, while the HR manager is authorized to view everyone's paystubs.
+
+A secure system requires both strong authentication (like MFA) and strict authorization (like the Principle of Least Privilege).
+
+import KnowledgeCheck from '../../components/KnowledgeCheck.tsx';
+
+<KnowledgeCheck client:load questions={[
+  {
+    question: "Which of the following is an example of Authorization?",
+    options: ["Scanning your fingerprint to unlock a phone", "Providing a password to log into an email account", "Being granted \"Edit\" access to a document while others only have \"View\" access"],
+    correctAnswerIndex: 2,
+    explanation: "Authentication proves who you are; Authorization determines your permissions."
+  }
+]} />

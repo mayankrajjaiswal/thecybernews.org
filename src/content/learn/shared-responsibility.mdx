@@ -1,0 +1,34 @@
+---
+title: "The Shared Responsibility Model"
+description: "Understanding who is responsible for what in the cloud."
+category: "Guide"
+audience: ["business", "it", "employee"]
+difficulty: "Beginner"
+readingTime: "4 min"
+author: "TheCyberNews Editorial"
+version: "1.0"
+---
+
+## The Biggest Cloud Myth
+
+A common misconception is: *"My data is in the cloud, so it's the cloud provider's job to keep it secure."*
+
+This is false. Cloud security operates on a **Shared Responsibility Model**.
+
+## Security OF the Cloud vs. Security IN the Cloud
+
+- **Security OF the Cloud (Provider's Job):** AWS, Microsoft, or Google is responsible for the physical security of the data centers, the hardware, and the network infrastructure that runs the cloud.
+- **Security IN the Cloud (Your Job):** You are responsible for who you give access to, how you configure your firewalls, encrypting your data, and ensuring your employees use strong passwords.
+
+If a hacker breaks into the physical Amazon data center, that is Amazon's fault. If you accidentally leave your cloud storage bucket public without a password and a hacker downloads your files, that is *your* fault.
+
+import KnowledgeCheck from '../../components/KnowledgeCheck.tsx';
+
+<KnowledgeCheck client:load questions={[
+  {
+    question: "Under the Shared Responsibility Model, who is responsible for managing user passwords and access permissions?",
+    options: ["The Cloud Provider (e.g., AWS)", "The Customer (You)", "Both are equally responsible"],
+    correctAnswerIndex: 1,
+    explanation: "The customer is always responsible for their own data, configurations, and user access."
+  }
+]} />

@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CliCheatSheet from '../../components/CliCheatSheet';
+---
+
+<Layout title="CLI Cheat Sheet" description="An interactive command-line cheat sheet for IT and Cyber Security professionals.">
+  <div class="bg-indigo-50 py-12 border-b border-indigo-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-indigo-900 tracking-tight mb-4">
+        Interactive CLI Cheat Sheet
+      </h1>
+      <p class="text-lg text-indigo-800">
+        A quick reference for the most common command-line utilities used in network diagnostics, traffic analysis, and system administration.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <CliCheatSheet client:load />
+
+    <div class="mt-12 bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
+      <h3 class="text-lg font-bold text-blue-900 mb-2">Why learn the Command Line?</h3>
+      <p class="text-blue-800 mb-4">
+        While graphical interfaces (GUIs) are easier to learn, the command line interface (CLI) is much faster and can be easily automated using scripts. When working on remote servers (like in AWS or Azure) or during a cyber attack, you often will not have access to a mouse or graphical windows. 
+      </p>
+      <p class="text-blue-800">
+        Understanding how to use tools like <code>ping</code> and <code>grep</code> is fundamental for any IT or Cybersecurity professional.
+      </p>
+    </div>
+  </div>
+</Layout>

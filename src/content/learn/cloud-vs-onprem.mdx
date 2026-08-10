@@ -1,0 +1,34 @@
+---
+title: "On-Premises vs. Cloud Security"
+description: "Understanding the fundamental differences in securing data."
+category: "Guide"
+audience: ["business", "it", "employee"]
+difficulty: "Beginner"
+readingTime: "4 min"
+author: "TheCyberNews Editorial"
+version: "1.0"
+---
+
+## On-Premises (Traditional IT)
+
+Historically, if a company wanted to run a website or an email server, they had to buy the physical computers, put them in a server room in their office, provide cooling and power, and hire staff to maintain them. This is called **On-Premises** or "On-Prem".
+You are responsible for 100% of the security, from the software down to the physical locks on the door.
+
+## The Cloud
+
+"The Cloud" is simply a network of massive data centers owned by companies like Amazon (AWS), Microsoft (Azure), or Google (GCP). Instead of buying your own servers, you rent space on theirs.
+
+## Security Differences
+
+In the cloud, you no longer have to worry about physical security or hardware failures. The provider handles that. However, because your data is hosted on the internet, misconfiguring your cloud settings can accidentally expose your data to the entire world instantly.
+
+import KnowledgeCheck from '../../components/KnowledgeCheck.tsx';
+
+<KnowledgeCheck client:load questions={[
+  {
+    question: "What is a primary advantage of cloud computing over on-premises infrastructure?",
+    options: ["You own the physical servers completely", "You don't have to manage physical security or hardware maintenance", "It is physically located in your office"],
+    correctAnswerIndex: 1,
+    explanation: "Cloud providers handle the physical infrastructure and its security for you."
+  }
+]} />
