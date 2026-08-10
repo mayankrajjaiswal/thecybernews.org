@@ -52,13 +52,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://thecyber
         <div class="flex-grow max-w-xl">
           <GlobalSearch client:idle />
         </div>
-        <nav class="hidden lg:flex space-x-6 flex-shrink-0">
+        <nav class="hidden lg:flex items-center space-x-4 flex-shrink-0 text-sm">
           <a href="/learn" class="text-slate-600 hover:text-blue-600 font-medium">Learn Cyber</a>
           <a href="/scams" class="text-slate-600 hover:text-blue-600 font-medium">Scam Alerts</a>
           <a href="/dictionary" class="text-slate-600 hover:text-blue-600 font-medium">Dictionary</a>
           <a href="/tools" class="text-slate-600 hover:text-blue-600 font-medium">Toolbox</a>
-          <a href="/saved" class="text-emerald-600 hover:text-emerald-800 font-bold bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100 transition-colors">My Saved Guides</a>
-          <a href="/academy" class="text-indigo-600 hover:text-indigo-800 font-bold bg-indigo-50 px-4 py-1.5 rounded-full border border-indigo-100 transition-colors">Academy Dashboard</a>
+          <div class="flex items-center gap-2 pl-2 border-l border-slate-200">
+            <a href="/saved" class="text-emerald-700 hover:text-emerald-800 font-bold bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100 transition-colors whitespace-nowrap">My Saved Guides</a>
+            <a href="/academy" class="text-indigo-700 hover:text-indigo-800 font-bold bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-100 transition-colors whitespace-nowrap">Academy Dashboard</a>
+          </div>
         </nav>
       </div>
     </header>
